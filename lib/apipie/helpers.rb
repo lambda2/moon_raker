@@ -33,8 +33,8 @@ module Apipie
     end
 
     def include_javascripts
-      %w[ bundled/jquery-1.7.2.js
-          bundled/bootstrap-collapse.js
+      %w[ bundled/jquery.min.js
+          bundled/bootstrap.js
           bundled/prettify.js
           apipie.js ].map do |file|
         "<script type='text/javascript' src='#{Apipie.full_url("javascripts/#{file}")}'></script>"
