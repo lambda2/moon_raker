@@ -1,7 +1,69 @@
-body {
-  padding-top: 20px;
-  padding-bottom: 40px;
-}
+
 .sidebar-nav {
   padding: 9px 0;
+}
+
+.documentation .breadcrumb {
+  background: transparent;
+  background-image: none;
+  
+}
+
+.side-column {
+  border-left: 3px solid rgba(0, 0, 0, .03);
+  padding: 30px;
+}
+
+.side-column li {
+  list-style-type: none;
+}
+
+.main-container {
+  display: -ms-flexbox;
+  display: -webkit-flex;
+  display: flex;
+  -webkit-flex-direction: row;
+  -ms-flex-direction: row;
+  flex-direction: row;
+  -webkit-flex-wrap: nowrap;
+  -ms-flex-wrap: nowrap;
+  flex-wrap: nowrap;
+  -webkit-justify-content: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  -webkit-align-content: stretch;
+  -ms-flex-line-pack: stretch;
+  align-content: stretch;
+  -webkit-align-items: stretch;
+  -ms-flex-align: stretch;
+  align-items: stretch;
+}
+
+.main-container .main-column {
+    margin-top: 20px;
+    -webkit-order: 0;
+    -ms-flex-order: 0;
+    order: 0;
+    -webkit-flex: 1 0 auto;
+    -ms-flex: 1 0 auto;
+    flex: 1 0 auto;
+    -webkit-align-self: stretch;
+    -ms-flex-item-align: stretch;
+    align-self: stretch;
+}
+
+.main-container .side-column {
+    -webkit-order: 0;
+    -ms-flex-order: 0;
+    order: 0;
+    -webkit-flex: 0 0 250px;
+    -ms-flex: 0 0 250px;
+    flex: 0 0 250px;
+    -webkit-align-self: auto;
+    -ms-flex-item-align: auto;
+    align-self: auto;
+}
+
+.main-container .side-column nav {
+  width: 190px;
 }
