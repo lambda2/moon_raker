@@ -371,7 +371,7 @@
   }
 body {
   font-family: "Lato", Helvetica, Arial, sans-serif;
-  font-size: 18px;
+  font-size: 14px;
   line-height: 1.72222;
   color: #34495e;
   background-color: #fff;
@@ -459,15 +459,15 @@ h6 {
   }
 h1,
 .h1 {
-  font-size: 35px;
+  font-size: 25px;
   }
 h2,
 .h2 {
-  font-size: 25px;
+  font-size: 20px;
   }
 h3,
 .h3 {
-  font-size: 20px;
+  font-size: 18px;
   }
 h4,
 .h4 {
@@ -479,11 +479,11 @@ h5,
   }
 h6,
 .h6 {
-  font-size: 14px;
+  font-size: 13px;
   }
 p {
   margin: 0 0 15px;
-  font-size: 14px;
+  font-size: 13px;
   line-height: 1.72222;
   }
 .lead {

@@ -67,3 +67,8 @@
 .main-container .side-column nav {
   width: 190px;
 }
+
+body footer {
+  background-color: transparent;
+  text-align: center;
+}
