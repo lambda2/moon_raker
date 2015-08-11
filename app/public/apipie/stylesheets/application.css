@@ -1,4 +1,16 @@
 
+header.main-page-header {
+  
+}
+
+header.main-page-header .logo {
+  height: 100px;
+  width: 100px;
+  background-repeat: no-repeat;
+  background-size: 100% auto;
+  background-position: 50% 50%;
+}
+
 .sidebar-nav {
   padding: 9px 0;
 }
