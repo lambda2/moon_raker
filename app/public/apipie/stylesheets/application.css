@@ -1,14 +1,29 @@
 
 header.main-page-header {
-  
+    border-bottom: 5px solid #3FBABC;
+    margin-bottom: 20px;
 }
 
 header.main-page-header .logo {
   height: 100px;
-  width: 100px;
+  min-width: 100px;
+  display: inline-block;
   background-repeat: no-repeat;
-  background-size: 100% auto;
-  background-position: 50% 50%;
+  background-size: 100px auto;
+  background-position: 0% 50%;
+  font-size: 75px;
+  padding-left: 110px;
+  font-weight: 900;
+  line-height: 85px;
+}
+
+header.main-page-header .logo small {
+    max-width: 550px;
+    display: inline-block;
+    color: #34495E;
+    font-size: 35px;
+    font-weight: 300;
+    line-height: 35px;
 }
 
 .sidebar-nav {
@@ -83,6 +98,9 @@ img {
 img[alt="auth_dialog"] {
   max-width: 50%;
   display: inline-block;
+  /* border: 1px solid #eee; */
+  box-shadow: 0px 0px 25px #eee;
+  margin-right: 20px;
 }
 
 .main-container .side-column nav {
