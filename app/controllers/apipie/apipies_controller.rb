@@ -14,6 +14,11 @@ module Apipie
       end
     end
 
+    def guides
+      @section = params[:section] || :introduction
+      render "apipie/static/#{@section}", layout: "apipie/guides"
+    end
+
     def index
 
       params[:version] ||= Apipie.configuration.default_version
