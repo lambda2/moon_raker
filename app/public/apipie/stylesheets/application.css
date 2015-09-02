@@ -1,4 +1,16 @@
 
+.guides-menu {
+  position: relative;
+}
+
+.guides-menu li a {
+  color: #666;
+}
+
+.guides-menu li.active a {
+  color: #00babc;
+}
+
 header.main-page-header {
     border-bottom: 4px solid #fafafa;
     margin-bottom: 20px;

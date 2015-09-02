@@ -78,6 +78,16 @@
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   }
+
+.label.label-default,
+.label.label-warning,
+.label.label-danger,
+.label.label-primary {
+  color: #fff;
+}
+.label {
+  color: #999;
+}
 .fui-triangle-up:before {
   content: "\e600";
   }
