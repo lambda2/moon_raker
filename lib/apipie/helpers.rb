@@ -44,7 +44,8 @@ module Apipie
     def include_stylesheets
       %w[ bundled/bootstrap.min.css
           bundled/prettify.css
-          bundled/bootstrap-responsive.min.css ].map do |file|
+          bundled/bootstrap-responsive.min.css
+          bundled/material_icons.css ].map do |file|
         "<link type='text/css' rel='stylesheet' href='#{Apipie.full_url("stylesheets/#{file}")}'/>"
       end.join("\n").html_safe
     end

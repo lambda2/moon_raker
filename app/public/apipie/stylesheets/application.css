@@ -1,4 +1,66 @@
 
+.intro-header,
+.intro-create-app {
+  text-align: center;
+  font-size: 3em;
+}
+
+.api-footer {
+  text-align: center;
+  padding: 30px;
+  color: #bbb;
+}
+
+.api-footer i {
+  padding: 5px 5px 0;
+}
+
+.reed {
+  color: #B90837;
+}
+
+.intro-create-app {
+  margin: 0 0 50px;
+}
+
+.icon-42 {
+  height: 1em;
+}
+
+.intro-header h1 {
+  height: 150px;
+  color: #bbb;
+  font-size: 2em;
+  display: -ms-flexbox;
+  display: -webkit-flex;
+  display: flex;
+  -webkit-flex-direction: row;
+  -ms-flex-direction: row;
+  flex-direction: row;
+  -webkit-flex-wrap: wrap;
+  -ms-flex-wrap: wrap;
+  flex-wrap: wrap;
+  -webkit-justify-content: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  -webkit-align-content: baseline;
+  -ms-flex-line-pack: baseline;
+  align-content: baseline;
+  -webkit-align-items: flex-end;
+  -ms-flex-align: flex-end;
+  align-items: flex-end;
+  padding-bottom: 30px;
+  font-weight: 300;
+}
+
+.intro-header h1 > * {
+  padding: 0 10px;
+}
+.intro-header h1 > i {
+  color: #00babc;
+}
+
+
 .guides-menu {
   position: relative;
 }
