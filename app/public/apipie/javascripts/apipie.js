@@ -12,7 +12,7 @@ $(document).ready(function() {
       menu.append("<li><a href='#" + $(this).attr("id") + "'>" + $(this).html() + "</a></li>")
     });
 
-    $("#page-menu li.link-to-" + active).after(menu)
+    $("#page-menu li.link-to-" + active).append(menu)
     $('body').scrollspy({ target: '#page-menu' })
   }
 });
