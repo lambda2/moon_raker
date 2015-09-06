@@ -37,6 +37,9 @@ ol.linenums li {
  * @author ocodia
  */
 
+pre code[class*="language-"] {
+  white-space: pre-line;
+}
 code[class*="language-"],
 pre[class*="language-"] {
   color: #f8f8f2;
@@ -44,7 +47,7 @@ pre[class*="language-"] {
   font-family: Consolas, Monaco, 'Andale Mono', 'Ubuntu Mono', monospace;
   direction: ltr;
   text-align: left;
-  white-space: pre;
+  white-space: pre-line;
   word-spacing: normal;
   word-break: normal;
   line-height: 1.5;
