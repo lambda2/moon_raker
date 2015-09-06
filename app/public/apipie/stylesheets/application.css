@@ -112,7 +112,7 @@ header.main-page-header .logo small {
 
 .side-column {
   border-left: 3px solid rgba(0, 0, 0, .03);
-  padding: 30px;
+  padding: 0px;
 }
 
 .side-column li {
@@ -178,7 +178,7 @@ img[alt="auth_dialog"] {
 }
 
 .main-container .side-column nav {
-  width: 190px;
+  width: 25%;
 }
 
 body footer {
