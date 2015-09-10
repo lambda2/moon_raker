@@ -38,7 +38,7 @@ ol.linenums li {
  */
 
 pre code[class*="language-"] {
-  white-space: pre-line;
+  white-space: pre;
 }
 code[class*="language-"],
 pre[class*="language-"] {
@@ -60,6 +60,11 @@ pre[class*="language-"] {
   -moz-hyphens: none;
   -ms-hyphens: none;
   hyphens: none;
+}
+
+#method-examples code[class*="language-"],
+#method-examples pre[class*="language-"] {
+  white-space: pre;
 }
 
 /* Code blocks */
