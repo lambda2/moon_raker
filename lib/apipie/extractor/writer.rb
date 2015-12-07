@@ -79,7 +79,12 @@ module Apipie
           next unless call.has_key?(k)
           ordered_call[k] = case call[k]
                        when ActiveSupport::HashWithIndifferentAccess
-                         JSON.parse(call[k].to_json) # to_hash doesn't work recursively and I'm too lazy to write the recursion:)
+                         begin
+                          JSON.parse(call[k].to_json) # to_hash doesn't work recursively and I'm too lazy to write the recursion:)
+                         rescue Encoding::UndefinedConversionError
+                           call[k][:attachment][:attachable_attributes][:pdf] = "sample-pdf-file"
+                           JSON.parse(call[k].to_json)
+                         end
                        else
                          call[k]
                        end
