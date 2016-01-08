@@ -77,27 +77,12 @@ module Apipie
         ordered_call = OrderedHash.new
         %w[title verb path versions query request_data response_data code show_in_doc recorded].each do |k|
           next unless call.has_key?(k)
-            
           ordered_call[k] = case call[k]
                        when ActiveSupport::HashWithIndifferentAccess
-                         p "$> #{call[k].to_json}"
-                          begin
-                           JSON.parse(call[k].to_json) # to_hash doesn't work recursively and I'm too lazy to write the recursion:)
-
-                          rescue Exception => e
-                            p "ERROR: #{e}"
-                            p "Happened on key #{k} (#{call[k]})"
-                          end
+                         JSON.parse(call[k].to_json) # to_hash doesn't work recursively and I'm too lazy to write the recursion:)
                        else
-                          begin
-                         p "$> #{call[k]}"
                          call[k]
-                          rescue Exception => e
-                            p "ERROR: #{e}"
-                            p "Happened on key #{k} (#{call[k]})"
-                          end
                        end
-
         end
         return ordered_call
       end
