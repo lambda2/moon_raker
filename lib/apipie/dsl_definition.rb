@@ -298,6 +298,23 @@ module Apipie
     # this describes the params, it's in separate module because it's
     # used in Validators as well
     module Param
+      # Describe method's route parameter
+      #
+      # Example:
+      #   route_param :greeting, String, :desc => "arbitrary text", :required => true
+      #   def hello_world(greeting)
+      #     puts greeting
+      #   end
+      #
+      # def route_param(param_name, validator, desc_or_options = nil, options = {}, &block) #:doc:
+      #   return unless Apipie.active_dsl?
+      #   _apipie_dsl_data[:route_params] << [param_name,
+      #                                 validator,
+      #                                 desc_or_options,
+      #                                 options.merge(:param_group => @_current_param_group),
+      #                                 block]
+      # end
+
       # Describe method's parameter
       #
       # Example:

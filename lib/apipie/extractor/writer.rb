@@ -79,6 +79,7 @@ module Apipie
           next unless call.has_key?(k)
           ordered_call[k] = case call[k]
                        when ActiveSupport::HashWithIndifferentAccess
+                         p "$> #{call[k].to_json}"
                          JSON.parse(call[k].to_json) # to_hash doesn't work recursively and I'm too lazy to write the recursion:)
                        else
                          call[k]
