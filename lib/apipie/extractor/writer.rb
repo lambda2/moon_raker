@@ -89,7 +89,13 @@ module Apipie
                             p "Happened on key #{k} (#{call[k]})"
                           end
                        else
+                          begin
+                         p "$> #{call[k]}"
                          call[k]
+                          rescue Exception => e
+                            p "ERROR: #{e}"
+                            p "Happened on key #{k} (#{call[k]})"
+                          end
                        end
 
         end
