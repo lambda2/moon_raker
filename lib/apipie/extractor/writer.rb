@@ -84,7 +84,7 @@ module Apipie
                           begin
                            JSON.parse(call[k].to_json) # to_hash doesn't work recursively and I'm too lazy to write the recursion:)
 
-                          rescue Encoding::UndefinedConversionError => e
+                          rescue Exception => e
                             p "ERROR: #{e}"
                             p "Happened on key #{k} (#{call[k]})"
                           end
