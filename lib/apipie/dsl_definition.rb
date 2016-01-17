@@ -15,6 +15,7 @@ module Apipie
       end
 
       def _apipie_dsl_data_clear
+        # p "CLEAR CALLED, clearing api_args: #{@_apipie_dsl_data [:api_args]}" unless @_apipie_dsl_data[:api_args].blank?
         @_apipie_dsl_data = nil
       end
 
@@ -81,7 +82,10 @@ module Apipie
       #   api
       #
       def api(method, path, desc = nil, options={}) #:doc:
+        # p "[PIPI...] registering #{method} #{path}, (#{desc}) #{options}"
+        # p "[...PIPI] in api method (#{Apipie.active_dsl?})"
         return unless Apipie.active_dsl?
+        # p "[PIPI] passed !"
         _apipie_dsl_data[:api] = true
         _apipie_dsl_data[:api_args] << [method, path, desc, options]
       end
@@ -416,6 +420,7 @@ module Apipie
       # create method api and redefine newly added method
       def method_added(method_name) #:doc:
         super
+        # p "Adding method #{method_name}" if !_apipie_dsl_data[:api_args].blank? 
         return if !Apipie.active_dsl? || !_apipie_dsl_data[:api]
 
         return if _apipie_dsl_data[:api_args].blank? && _apipie_dsl_data[:api_from_routes].blank?

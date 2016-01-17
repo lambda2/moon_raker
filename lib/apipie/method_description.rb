@@ -164,6 +164,7 @@ module Apipie
 
     def api_data(dsl_data)
       ret = dsl_data[:api_args].dup
+      # p "In api data: ret = #{ret}"
       if dsl_data[:api_from_routes]
         desc = dsl_data[:api_from_routes][:desc]
         options = dsl_data[:api_from_routes][:options]
