@@ -284,6 +284,37 @@ pre[class*="language-"] {
   font-weight: bold;
 }
 
+.invisible {
+  display: none;
+}
+
+.method-group {
+  display: flex;
+  align-content: stretch;
+  align-items: center;
+}
+
+.metadata-icons
+{
+  display: inline-block;
+  min-width: 100px;
+  color: #666;
+  font-size: 20px;
+  flex: 1 0;
+}
+
+.inline-block
+{
+  flex: 1 1 100%;
+  display: inline-block;
+}
+
+
+.inline-block + .pull-right
+{
+  flex: 1 1 80px;
+}
+
 
 @media screen and (max-width: 640px) {
   .affix {

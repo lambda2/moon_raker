@@ -9,6 +9,7 @@ module Apipie
     before_filter :authenticate
     
     skip_authentication
+    
 
     def authenticate
       if Apipie.configuration.authenticate

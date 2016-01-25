@@ -1,8 +1,10 @@
+# require 
 module ApipieHelper
   include ActionView::Helpers::TagHelper
 
       SENTENCE_LINKER = ", associated with the given "
       HAS_PARENT_LINKER = "of the given "
+      ACTION_HAS__PARENT_LINKER = "for the given "
 
   def heading(title, level=1)
     content_tag("h#{level}") do
@@ -11,25 +13,28 @@ module ApipieHelper
   end
 
   def action_to_sentence action, name
+    sing = "#{name.singularize.indefinite_article} #{name.downcase.singularize}"
     case action.to_s.downcase
     when "index"
-      "Return all the #{name}"
+      "Return all the #{name.downcase}"
     when "show"
-      "Get the requested #{name.singularize}"
+      "Get #{sing}"
     when "create"
-      "Create a new #{name.singularize}"
+      "Create #{sing}"
     when "update"
-      "Update the requested #{name.singularize}"
+      "Update #{sing}"
     when "destroy"
-      "Destroy the requested #{name.singularize}"
+      "Destroy #{sing}"
     end
   end
 
   def auto_description resource, class_name, m
     end_sentence = resource[:api_url].scan(/:([\w]*)/).reverse.flatten.map(&:humanize)
     desc = action_to_sentence(m[:name], class_name)
+    end_sentence.pop if end_sentence.last.try(:downcase) == "id"
     if end_sentence.count > 0
-      desc = "#{desc} #{HAS_PARENT_LINKER} #{end_sentence.join(SENTENCE_LINKER)}"
+      sent = (['index', 'show'].include?(m[:name].to_s.downcase) ? HAS_PARENT_LINKER : ACTION_HAS__PARENT_LINKER)
+      desc = "#{desc} #{sent} #{end_sentence.join(SENTENCE_LINKER)}"
     end
     desc
   end
