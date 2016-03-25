@@ -5,6 +5,7 @@ module ApipieHelper
       SENTENCE_LINKER = ", associated with the given "
       HAS_PARENT_LINKER = "of the given "
       ACTION_HAS__PARENT_LINKER = "for the given "
+      ACTION_HAS__OWNER_LINKER = " for the current resource owner"
 
   def heading(title, level=1)
     content_tag("h#{level}") do
@@ -36,6 +37,7 @@ module ApipieHelper
       sent = (['index', 'show'].include?(m[:name].to_s.downcase) ? HAS_PARENT_LINKER : ACTION_HAS__PARENT_LINKER)
       desc = "#{desc} #{sent} #{end_sentence.join(SENTENCE_LINKER)}"
     end
+    desc += ACTION_HAS__OWNER_LINKER if resource[:api_url] =~ /\/me\//
     desc
   end
 
