@@ -42,6 +42,7 @@ module Apipie
       @examples = dsl_data[:examples]
       @examples += load_recorded_examples
 
+
       @metadata = dsl_data[:meta]
 
       @params_ordered = dsl_data[:params].map do |args|
@@ -187,6 +188,13 @@ module Apipie
     end
 
     def load_recorded_examples
+      (Apipie.recorded_examples[id] || []).
+        find_all { |ex| ex["show_in_doc"].to_i > 0 }.
+        find_all { |ex| ex["versions"].nil? || ex["versions"].include?(self.version) }.
+        sort_by { |ex| ex["show_in_doc"] }
+    end
+
+    def old_load_recorded_examples
       (Apipie.recorded_examples[id] || []).
         find_all { |ex| ex["show_in_doc"].to_i > 0 }.
         find_all { |ex| ex["versions"].nil? || ex["versions"].include?(self.version) }.
