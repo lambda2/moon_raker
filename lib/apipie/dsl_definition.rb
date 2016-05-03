@@ -113,7 +113,7 @@ module Apipie
       # method return.
       def example(example) #:doc:
         return unless Apipie.active_dsl?
-        _apipie_dsl_data[:examples] << example.strip_heredoc
+        _apipie_dsl_data[:examples] << (example.is_a?(String) ? example.strip_heredoc : example)
       end
 
       # Determine if the method should be included
