@@ -18,7 +18,7 @@ Gem::Specification.new do |s|
 
   s.add_development_dependency "rails", ">= 3.0.10"
   s.add_dependency 'json'
-  # s.add_dependency 'actionpack-page_caching'
+  s.add_dependency 'actionpack-page_caching'
   s.add_development_dependency "rspec-rails", "~> 2.14.2"
   s.add_development_dependency "sqlite3"
   s.add_development_dependency "minitest"

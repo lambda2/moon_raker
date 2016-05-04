@@ -1,6 +1,7 @@
 module Apipie
   class ApipiesController < ActionController::Base
-    # caches_page
+    caches_page :index
+
     include ActionView::Context
     include ApipieHelper
 
