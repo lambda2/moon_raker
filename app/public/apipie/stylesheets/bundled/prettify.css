@@ -82,6 +82,13 @@ pre[class*="language-"] {
   border: none;
 }
 
+
+body.documentation :not(pre) > code[class*="language-"],
+body.documentation pre[class*="language-"] {
+  background: #002929;
+  border: 1px solid #000000;
+}
+
 /* Inline code */
 :not(pre) > code[class*="language-"] {
   padding: .1em;
