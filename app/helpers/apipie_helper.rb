@@ -30,14 +30,18 @@ module ApipieHelper
   end
 
   def auto_description resource, class_name, m
-    end_sentence = resource[:api_url].scan(/:([\w]*)/).reverse.flatten.map(&:humanize)
-    desc = action_to_sentence(m[:name], class_name)
-    end_sentence.pop if end_sentence.last.try(:downcase) == "id"
-    if end_sentence.count > 0
-      sent = (['index', 'show'].include?(m[:name].to_s.downcase) ? HAS_PARENT_LINKER : ACTION_HAS__PARENT_LINKER)
-      desc = "#{desc} #{sent} #{end_sentence.join(SENTENCE_LINKER)}"
+    if resource[:api_url] =~ /graph\(\/on\/:field\(\/by\/:interval\)\)/
+      desc = "Return grouped temporal data on #{class_name.to_s.downcase}"
+    else
+      end_sentence = resource[:api_url].scan(/:([\w]*)/).reverse.flatten.map(&:humanize)
+      desc = action_to_sentence(m[:name], class_name)
+      end_sentence.pop if end_sentence.last.try(:downcase) == "id"
+      if end_sentence.count > 0
+        sent = (['index', 'show'].include?(m[:name].to_s.downcase) ? HAS_PARENT_LINKER : ACTION_HAS__PARENT_LINKER)
+        desc = "#{desc} #{sent} #{end_sentence.join(SENTENCE_LINKER)}"
+      end
+      desc += ACTION_HAS__OWNER_LINKER if resource[:api_url] =~ /\/me\//
     end
-    desc += ACTION_HAS__OWNER_LINKER if resource[:api_url] =~ /\/me\//
     desc
   end
 
