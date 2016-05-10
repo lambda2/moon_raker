@@ -78,15 +78,14 @@ pre[class*="language-"] {
 
 :not(pre) > code[class*="language-"],
 pre[class*="language-"] {
-  background: transparent;
-  border: none;
+  background: #1A252F;
+  border: 1px solid #000000;
 }
 
-
-body.documentation :not(pre) > code[class*="language-"],
-body.documentation pre[class*="language-"] {
-  background: #002929;
-  border: 1px solid #000000;
+#method-examples :not(pre) > code[class*="language-"],
+#method-examples pre[class*="language-"] {
+  background: transparent;
+  border: none;
 }
 
 /* Inline code */
