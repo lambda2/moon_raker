@@ -523,6 +523,28 @@ pre[class*="language-"] {
 
 }
 
+.main-summary {
+  margin: auto;
+  text-align: center;
+}
+
+.main-summary ul {
+  list-style-type: none;
+  margin: 0;
+  display: block;
+  text-align: center;
+}
+
+.main-summary li {
+  margin: 0;
+  font-size: 2em;
+}
+
+.main-summary li .odometer {
+  color: #00babc;
+  // font-weight: bold;
+}
+
 @media screen and (max-width: 640px) {
   .affix {
     position: static;
