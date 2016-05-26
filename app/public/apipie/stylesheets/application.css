@@ -471,9 +471,29 @@ pre[class*="language-"] {
   border: none;
 }
 
+.main-summary {
+  margin: auto;
+  text-align: center;
+}
+
+.main-summary ul {
+  list-style-type: none;
+  margin: 0;
+  display: block;
+  text-align: center;
+}
+
+.main-summary li {
+  margin: 0;
+  font-size: 2em;
+}
+
+.main-summary li .odometer {
+  color: #00babc;
+  // font-weight: bold;
+}
+
 @media screen and (max-width: 1200px) {
-
-
 
   .navbar ul.nav  {
     display: block;
@@ -536,36 +556,18 @@ pre[class*="language-"] {
   .code-column {
     background-color: transparent;
   }
-
-
 }
 
-.main-summary {
-  margin: auto;
-  text-align: center;
-}
-
-.main-summary ul {
-  list-style-type: none;
-  margin: 0;
-  display: block;
-  text-align: center;
-}
-
-.main-summary li {
-  margin: 0;
-  font-size: 2em;
-}
-
-.main-summary li .odometer {
-  color: #00babc;
-  // font-weight: bold;
-}
 
 @media screen and (max-width: 640px) {
 
   h2 {
     font-size: 20px;
+  }
+
+  .documentation .container {
+    width: 100%;
+    margin: 0;
   }
 
   header.main-page-header {
@@ -593,7 +595,6 @@ pre[class*="language-"] {
     padding-left: 80px;
     line-height: 90px;
   }
-
 
   .method-group {
     display: block;
@@ -640,7 +641,6 @@ pre[class*="language-"] {
     position: static;
   }
 
-
   .main-container {
     display: block;
   }
@@ -672,6 +672,18 @@ pre[class*="language-"] {
     font-size: 1.2em;
   }
 
+
+  .page-header .pull-right {
+    float: none !important;
+  }
+
+  .page-header .pull-right a.btn{
+    float: none !important;
+    display: block;
+    width: 100%;
+    margin: 10px 0;
+  }
+
   .resource-item {
     -webkit-flex-direction: column;
     -ms-flex-direction: column;
@@ -685,5 +697,34 @@ pre[class*="language-"] {
     float: none;
     padding: 10px;
     background-color: #fafafa;
+  }
+
+  h2 {
+    font-size: 2em;
+  }
+
+  h2 small {
+    font-size: .7em;
+  }
+
+  .resource-item-right,
+  .resource-item-left {
+    padding: 0;
+  }
+
+  .resource-item-right {
+
+  }
+  .resource-item .method-left-icon {
+    display: inline;
+    width: initial;
+    margin-left: 0;
+    text-align: right;
+    color: #ccc;
+  }
+  .resource-item .resource-item-right .resource-item-method a {
+    text-overflow: ellipsis;
+    overflow: hidden;
+    display: block;
   }
 }
