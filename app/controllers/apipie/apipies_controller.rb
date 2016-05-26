@@ -21,6 +21,27 @@ module Apipie
 
     def guides
       @section = params[:section] || :introduction
+
+      title = @section.to_s.humanize
+      desc = "Guides for #{title}"
+      set_meta_tags({
+        title: title,
+        description: desc,
+        keywords: [title, '42', 'API', 'guides'].join(', '),
+        author: "https://plus.google.com/u/0/115378296196014576465",
+        publisher: "https://plus.google.com/u/0/115378296196014576465",
+        og: {
+          title: title,
+          description: desc
+        },
+        twitter: {
+          card: "summary",
+          site: "@42born2code",
+          title: title,
+          description: desc
+        }
+      })
+
       render "apipie/static/#{@section}", layout: "apipie/guides"
     end
 
@@ -67,6 +88,75 @@ module Apipie
           @resource = @doc[:resources].first if params[:resource].present?
           @method = @resource[:methods].first if params[:method].present?
           @languages = Apipie.configuration.languages
+
+
+          title = ""
+          title = @resource[:name] if @resource
+          title = "#{@method[:name].gsub(/^_/, "")} of #{title} (#{title}##{@method[:name].gsub(/^_/, "")})" if @method
+
+          description = ""
+          description = @resource[:description] if @resource
+          description = @method[:desription] if @method
+
+          tags = []
+          tags << @resource[:name] if @resource
+          tags << @method[:name] if @method
+          tags << ["42", "api"]
+
+          path = Apipie.configuration.doc_base_url.dup
+          path << "/" << params[:version] if params[:version].present?
+          path << "/" << params[:resource] if params[:resource].present?
+          path << "/" << params[:method] if params[:method].present?
+          
+          author = {
+            "@type": "Person",
+            first_name: 'André',
+            last_name: 'Aubin',
+            username: 'andral',
+            gender: 'male',
+            "name": "André Aubin",
+            "url": "https://plus.google.com/u/0/115378296196014576465",
+            fb: {
+              profile_id: 'andre.awbin'
+            }
+          }
+
+          article = {
+            published_time: Date.parse("2016-02-10"),
+            modified_time: Date::today,
+            author: author,
+            publisher: author,
+            "datePublished": Date.parse("2016-02-10"),
+            "dateModified": Date::today,
+            "description": description,
+            "keywords": tags.join(', '),
+            tag: tags
+          }
+
+          set_meta_tags({
+            title: title,
+            description: description,
+            keywords: tags.join(', '),
+            author: "https://plus.google.com/u/0/115378296196014576465",
+            publisher: "https://plus.google.com/u/0/115378296196014576465",
+            article: article,
+            og: {
+              title: title,
+              type: 'article',
+              description: description,
+              author: author,
+              url: "#{path}.html",
+              article: article
+            },
+            twitter: {
+              card: "summary",
+              site: "@42born2code",
+              title: title,
+              description: description
+            }
+          })
+
+
 
           if @resource && @method
             render 'method'
