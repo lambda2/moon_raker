@@ -16,17 +16,27 @@ $(document).ready(function() {
     prettyPrint();
   }
 
+  if (localStorage.getItem('data-restricted') == 'true')
+  {
+    $("[data-restricted='true']").toggleClass("invisible");
+    $("[data-trigger='data-restricted']").html($("[data-trigger='data-restricted']").html().replace("Show", "Hide"));
+  }
+
   $("[data-trigger]").click(function(e) {
-    target = $(this).attr("data-trigger");
+    var target = $(this).attr("data-trigger");
+    var localStorageTarget = target;
+
     $("[" + target + "='true']").toggleClass("invisible");
     content = $(this).html();
     if (content.search("Hide") >= 0)
     {
       $(this).html(content.replace("Hide", "Show"));
+      localStorage.setItem(localStorageTarget, null);
     }
     else if (content.search("Show") >= 0)
     {
       $(this).html(content.replace("Show", "Hide"));
+      localStorage.setItem(localStorageTarget, "true");
     }
   });
 

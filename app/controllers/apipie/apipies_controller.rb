@@ -92,7 +92,7 @@ module Apipie
 
           title = ""
           title = @resource[:name] if @resource
-          title = "#{@method[:name].gsub(/^_/, "")} of #{title} (#{title}##{@method[:name].gsub(/^_/, "")})" if @method
+          title = "#{@method[:name].gsub(/^_/, "")} of #{title} (#{@method[:apis].count} endpoints)" if @method
 
           description = ""
           description = @resource[:description] if @resource
@@ -125,7 +125,6 @@ module Apipie
             published_time: Date.parse("2016-02-10"),
             modified_time: Date::today,
             author: author,
-            publisher: author,
             "datePublished": Date.parse("2016-02-10"),
             "dateModified": Date::today,
             "description": description,
@@ -133,13 +132,22 @@ module Apipie
             tag: tags
           }
 
+          additional = {}
+          if @resource && @method
+            additional = {
+              label1: "Method",
+              data1: @method[:apis].try(:first).try(:fetch, :http_method, :GET).to_s,
+              label2: "Endpoint",
+              data2: "#{@resource[:name]}##{@method[:name].gsub(/^_/, "")}",
+            }
+          end
+
           set_meta_tags({
             title: title,
             description: description,
             keywords: tags.join(', '),
             author: "https://plus.google.com/u/0/115378296196014576465",
             publisher: "https://plus.google.com/u/0/115378296196014576465",
-            article: article,
             og: {
               title: title,
               type: 'article',
@@ -152,11 +160,10 @@ module Apipie
               card: "summary",
               site: "@42born2code",
               title: title,
+              url: "#{path}.html",
               description: description
-            }
+            }.merge(additional)
           })
-
-
 
           if @resource && @method
             render 'method'

@@ -1,4 +1,8 @@
 
+body {
+  -webkit-font-smoothing: antialiased;
+}
+
 .intro-header,
 .intro-create-app {
   text-align: center;
@@ -14,6 +18,14 @@
 .blue-background {
   background-color: #34495E;
   color: #fff;
+}
+
+.space-ship-background {
+  background-image: url(/assets/neptune.svg), url(/assets/saturn.svg), url(/assets/space-ship.svg), linear-gradient(180deg, #212e3c 0%,#34495E 4%);
+  background-position: 35% 10%, 90% -10%, -10% 30%, 0 0;
+  background-repeat: no-repeat, no-repeat, no-repeat, repeat;
+  background-size: 100px, 400px, 400px, 100%;
+  background-attachment: fixed;
 }
 
 .blue-background .main-content-container {
@@ -62,9 +74,9 @@
     -webkit-order: 0;
     -ms-flex-order: 0;
     order: 0;
-    -webkit-flex: 1 1 25%;
-    -ms-flex: 1 1 25%;
-    flex: 1 1 25%;
+    -webkit-flex: 1 1 150px;
+    -ms-flex: 1 1 150px;
+    flex: 1 1 150px;
 }
 .main-column > footer {
   background-color: #fff;
@@ -100,7 +112,7 @@
 
 .intro-header h1 {
   height: 150px;
-  color: #bbb;
+  color: #fff;
   font-size: 2em;
   display: -ms-flexbox;
   display: -webkit-flex;
@@ -122,6 +134,7 @@
   align-items: flex-end;
   padding-bottom: 30px;
   font-weight: 300;
+  text-shadow: 0px 0px 20px rgba(0, 0, 0, .3);
 }
 
 .intro-header h1 > * {
