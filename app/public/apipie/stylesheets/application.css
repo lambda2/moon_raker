@@ -20,12 +20,25 @@ body {
   color: #fff;
 }
 
+.btn-info {
+  background-color: #34495E;
+  border-color: #34495E;
+  color: #fff;
+}
+
 .space-ship-background {
-  background-image: url(/assets/neptune.svg), url(/assets/saturn.svg), url(/assets/space-ship.svg), linear-gradient(180deg, #212e3c 0%,#34495E 4%);
-  background-position: 35% 10%, 90% -10%, -10% 30%, 0 0;
+  background-image: url(/assets/neptune.svg), url(/assets/saturn.svg), url(/assets/space-ship.svg), linear-gradient(180deg, #212e3c 0%,#34495E 50%);
+  background-position: 35% 15%, 95% -10%, -10% 30%, 0 0;
   background-repeat: no-repeat, no-repeat, no-repeat, repeat;
-  background-size: 100px, 400px, 400px, 100%;
+  background-size: 100px, 300px, 400px, 100%;
   background-attachment: fixed;
+  // animation: animatedBackground 400s linear infinite;
+  // animation-direction: alternate;
+}
+
+@keyframes animatedBackground {
+  from { background-position: 35% 15%, 95% -10%, -10% 30%, 0 0; }
+  to { background-position: 85% 15%, 35% -10%, -10% 30%, 0 0; }
 }
 
 .blue-background .main-content-container {
@@ -347,6 +360,8 @@ h3 i.material-icons {
     -webkit-align-self: stretch;
     -ms-flex-item-align: stretch;
     align-self: stretch;
+    padding-right: 20px;
+    max-width: 100%;
 }
 
 .main-container .side-column {
@@ -546,6 +561,7 @@ pre[class*="language-"] {
     -webkit-order:0;
     align-self:auto;
     flex:0 0 50%;
+    max-width: 50%;
     order:0;
 }
 
@@ -558,6 +574,7 @@ pre[class*="language-"] {
 .main-summary {
   margin: auto;
   text-align: center;
+  text-shadow: 0px 0px 10px rgba(0, 0, 0, .4);
 }
 
 .main-summary ul {
@@ -578,6 +595,11 @@ pre[class*="language-"] {
 }
 
 @media screen and (max-width: 1200px) {
+
+  .main-container .main-column {
+    padding: 0;
+    max-width: 100%;
+  }
 
   .navbar ul.nav  {
     display: block;
@@ -611,6 +633,7 @@ pre[class*="language-"] {
     -webkit-order:0;
     align-self:auto;
     flex:1 0 100%;
+    max-width: 100%;
     order:0;
   }
 

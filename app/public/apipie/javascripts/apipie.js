@@ -16,10 +16,13 @@ $(document).ready(function() {
     prettyPrint();
   }
 
-  if (localStorage.getItem('data-restricted') == 'true')
+  if ($("[data-restricted='true']").length > 0)
   {
-    $("[data-restricted='true']").toggleClass("invisible");
-    $("[data-trigger='data-restricted']").html($("[data-trigger='data-restricted']").html().replace("Show", "Hide"));
+    if (localStorage.getItem('data-restricted') == 'true')
+    {
+      $("[data-restricted='true']").toggleClass("invisible");
+      $("[data-trigger='data-restricted']").html($("[data-trigger='data-restricted']").html().replace("Show", "Hide"));
+    }
   }
 
   $("[data-trigger]").click(function(e) {
