@@ -43,7 +43,7 @@ $(document).ready(function() {
     }
   });
 
-  if ($("#page-menu").length > 0) {
+  if ($("#page-menu").length > 0 && window.innerWidth >= 1200) {
     var active = $("body").attr("data-active")
     var menu = $("<ul id='local-menu' class='nav' role='tablist'></ul>")
 

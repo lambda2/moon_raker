@@ -44,7 +44,7 @@ ol.linenums li {
 // pre[class*="language-"] {
 //   color: #f8f8f2;
 //   text-shadow: 0 1px rgba(0, 0, 0, 0.3);
-//   font-family: Consolas, Monaco, 'Andale Mono', 'Ubuntu Mono', monospace;
+//   font-family: 'Source Code Pro', monospace;
 //   direction: ltr;
 //   text-align: left;
 //   white-space: pre-line;
@@ -61,6 +61,7 @@ ol.linenums li {
 //   -ms-hyphens: none;
 //   hyphens: none;
 // }
+@import 'https://fonts.googleapis.com/css?family=Source+Code+Pro|VT323';
 
 #method-examples code[class*="language-"],
 #method-examples pre[class*="language-"] {
@@ -85,7 +86,8 @@ pre[class*="language-"] {
   color: #f8f8f2;
   background: none;
   text-shadow: 0 1px rgba(0, 0, 0, 0.3);
-  font-family: Consolas, Monaco, 'Andale Mono', 'Ubuntu Mono', monospace;
+  font-family: 'Source Code Pro', monospace;
+  -webkit-font-smoothing: antialiased;
   text-align: left;
   white-space: pre;
   word-spacing: normal;
@@ -325,8 +327,8 @@ div.prism-show-language {
 }
 
 div.prism-show-language > div.prism-show-language-label {
-  color: black;
-  background-color: #CFCFCF;
+  color: #fff;
+  background-color: transparent;
   display: inline-block;
   position: absolute;
   bottom: auto;
