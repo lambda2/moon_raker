@@ -15,6 +15,11 @@ body {
   color: #bbb;
 }
 
+.visible-xxs {
+  display: none;
+}
+
+
 .blue-background {
   background-color: #34495E;
   color: #fff;
@@ -643,10 +648,28 @@ pre[class*="language-"] {
 }
 
 
-@media screen and (max-width: 640px) {
+
+
+@media screen and (max-width: 767px) {
 
   .main-summary {
     padding-bottom: 50px;
+  }
+
+
+  .space-ship-background {
+    background-image: url(/assets/neptune.svg), url(/assets/saturn.svg), linear-gradient(180deg, #212e3c 0%,#34495E 50%);
+    background-position: 35% 15%, 95% -10%, 0 0;
+    background-repeat: no-repeat, no-repeat, repeat;
+    background-size: 80px, 200px, 100%;
+    background-attachment: fixed;
+    // animation: animatedBackground 400s linear infinite;
+    // animation-direction: alternate;
+  }
+
+  .container-fluid {
+    padding: 0;
+    margin: 0;
   }
 
   .blue-background {
@@ -659,7 +682,7 @@ pre[class*="language-"] {
     color: #34495E;
     padding: 10px;
     margin-top: 10px;
-    margin: 0 -15px 0 -15px;
+    margin: 0;
   }
 
   .primary-container
@@ -667,16 +690,18 @@ pre[class*="language-"] {
     max-width: 100%;
     margin: auto;
     width: 100%;
+    display: block;
   }
 
   .primary-container .index-main {
 
-      -webkit-order: 1;
-      -ms-flex-order: 1;
-      order: 1;
-      -webkit-flex: 1 1;
-      -ms-flex: 1 1;
-      flex: 1 1;
+    -webkit-order: 1;
+    -ms-flex-order: 1;
+    order: 1;
+    -webkit-flex: 1 1;
+    -ms-flex: 1 1;
+    flex: 1 1;
+    max-width: 100%;
   }
 
   .primary-container .index-menu {
@@ -839,6 +864,10 @@ pre[class*="language-"] {
     font-size: .7em;
   }
 
+  .visible-xxs {
+    display: block;
+  }
+
   .resource-item-right,
   .resource-item-left {
     padding: 0;
@@ -858,9 +887,17 @@ pre[class*="language-"] {
     text-overflow: ellipsis;
     overflow: hidden;
     display: block;
+    font-size: 1.2em;
   }
 
   .main-column > footer {
-    margin: 0 -15px 0 -15px;
+    margin: 0;
+    padding-top: 50px;
+  }
+
+  .guides-menu {
+    position: static;
+    margin-bottom: 0px;
+    width: 100%;
   }
 }
