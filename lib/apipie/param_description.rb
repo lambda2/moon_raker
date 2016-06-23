@@ -1,5 +1,4 @@
 module Apipie
-
   # method parameter description
   #
   # name - method name (show)
@@ -7,7 +6,6 @@ module Apipie
   # required - boolean if required
   # validator - Validator::BaseValidator subclass
   class ParamDescription
-
     attr_reader :method_description, :name, :desc, :allow_nil, :validator, :options, :metadata, :show, :as
     attr_accessor :parent, :required
 
@@ -22,13 +20,12 @@ module Apipie
     end
 
     def initialize(method_description, name, validator, desc_or_options = nil, options = {}, &block)
-
       if desc_or_options.is_a?(Hash)
         options = options.merge(desc_or_options)
       elsif desc_or_options.is_a?(String)
         options[:desc] = desc_or_options
       elsif !desc_or_options.nil?
-        raise ArgumentError.new("param description: expected description or options as 3rd parameter")
+        raise ArgumentError, 'param description: expected description or options as 3rd parameter'
       end
 
       options.symbolize_keys!
@@ -47,16 +44,16 @@ module Apipie
       @parent = @options[:parent]
       @metadata = @options[:meta]
 
-      @required = if @options.has_key? :required
-        @options[:required]
-      else
-        Apipie.configuration.required_by_default?
+      @required = if @options.key? :required
+                    @options[:required]
+                  else
+                    Apipie.configuration.required_by_default?
       end
 
-      @show = if @options.has_key? :show
-        @options[:show]
-      else
-        true
+      @show = if @options.key? :show
+                @options[:show]
+              else
+                true
       end
 
       @allow_nil = @options[:allow_nil] || false
@@ -91,41 +88,39 @@ module Apipie
     end
 
     def full_name
-      name_parts = parents_and_self.map{|p| p.name if p.show}.compact
+      name_parts = parents_and_self.map { |p| p.name if p.show }.compact
       return name.to_s if name_parts.blank?
-      return ([name_parts.first] + name_parts[1..-1].map { |n| "[#{n}]" }).join("")
+      ([name_parts.first] + name_parts[1..-1].map { |n| "[#{n}]" }).join('')
     end
 
     # returns an array of all the parents: starting with the root parent
     # ending with itself
     def parents_and_self
       ret = []
-      if self.parent
-        ret.concat(self.parent.parents_and_self)
-      end
+      ret.concat(parent.parents_and_self) if parent
       ret << self
       ret
     end
 
     def to_json(lang = nil)
-      hash = { :name => name.to_s,
-               :full_name => full_name,
-               :description => preformat_text(Apipie.app.translate(@options[:desc], lang)),
-               :required => required,
-               :allow_nil => allow_nil,
-               :validator => validator.to_s,
-               :expected_type => validator.expected_type,
-               :metadata => metadata,
-               :show => show }
+      hash = { name: name.to_s,
+               full_name: full_name,
+               description: preformat_text(Apipie.app.translate(@options[:desc], lang)),
+               required: required,
+               allow_nil: allow_nil,
+               validator: validator.to_s,
+               expected_type: validator.expected_type,
+               metadata: metadata,
+               show: show }
       if sub_params = validator.params_ordered
-        hash[:params] = sub_params.map { |p| p.to_json(lang)}
+        hash[:params] = sub_params.map { |p| p.to_json(lang) }
       end
       hash
     end
 
     def merge_with(other_param_desc)
-      if self.validator && other_param_desc.validator
-        self.validator.merge_with(other_param_desc.validator)
+      if validator && other_param_desc.validator
+        validator.merge_with(other_param_desc.validator)
       else
         self.validator ||= other_param_desc.validator
       end
@@ -147,7 +142,7 @@ module Apipie
     #     end
     def self.unify(params)
       ordering = params.map(&:name)
-      params.group_by(&:name).map do |name, param_descs|
+      params.group_by(&:name).map do |_name, param_descs|
         param_descs.reduce(&:merge_with)
       end.sort_by { |param| ordering.index(param.name) }
     end
@@ -155,7 +150,7 @@ module Apipie
     # action awareness is being inherited from ancestors (in terms of
     # nested params)
     def action_aware?
-      if @options.has_key?(:action_aware)
+      if @options.key?(:action_aware)
         return @options[:action_aware]
       elsif @parent
         @parent.action_aware?
@@ -166,7 +161,7 @@ module Apipie
 
     def as_action
       if @options[:param_group] && @options[:param_group][:options] &&
-          @options[:param_group][:options][:as]
+         @options[:param_group][:options][:as]
         @options[:param_group][:options][:as].to_s
       elsif @parent
         @parent.as_action
@@ -180,21 +175,19 @@ module Apipie
     # crate/update actions.
     def action_awareness
       if action_aware?
-        if !@options.has_key?(:allow_nil)
-          if @required
-            @allow_nil = false
-          else
-            @allow_nil = true
-          end
+        unless @options.key?(:allow_nil)
+          @allow_nil = if @required
+                         false
+                       else
+                         true
+                       end
         end
-        if as_action != "create"
-          @required = false
-        end
+        @required = false if as_action != 'create'
       end
     end
 
     def concern_subst(string)
-      return string if string.nil? or !from_concern?
+      return string if string.nil? || !from_concern?
 
       original = string
       string = ":#{original}" if original.is_a? Symbol
@@ -203,13 +196,11 @@ module Apipie
 
       return original if replaced == string
       return replaced.to_sym if original.is_a? Symbol
-      return replaced
+      replaced
     end
 
     def preformat_text(text)
       concern_subst(Apipie.markup_to_html(text || ''))
     end
-
   end
-
 end

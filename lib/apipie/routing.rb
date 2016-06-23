@@ -2,12 +2,12 @@ module Apipie
   module Routing
     module MapperExtensions
       def apipie(options = {})
-        namespace "apipie", :path => Apipie.configuration.doc_base_url do
-          get 'apipie_checksum', :to => "apipies#apipie_checksum", :format => "json"
-          get 'guides', :to => "apipies#guides"
-          get 'guides/:section', :to => "apipies#guides"
-          constraints(:version => /[^\/]+/, :resource => /[^\/]+/, :method => /[^\/]+/) do
-            get(options.reverse_merge("(:version)/(:resource)/(:method)" => "apipies#index", :as => :apipie))
+        namespace 'apipie', path: Apipie.configuration.doc_base_url do
+          get 'apipie_checksum', to: 'apipies#apipie_checksum', format: 'json'
+          get 'guides', to: 'apipies#guides'
+          get 'guides/:section', to: 'apipies#guides'
+          constraints(version: /[^\/]+/, resource: /[^\/]+/, method: /[^\/]+/) do
+            get(options.reverse_merge('(:version)/(:resource)/(:method)' => 'apipies#index', :as => :apipie))
           end
         end
       end

@@ -1,133 +1,120 @@
-require "spec_helper"
+require 'spec_helper'
 
 describe Apipie::ParamDescription do
-
   let(:dsl_data) { ActionController::Base.send(:_apipie_dsl_data_init) }
 
   let(:resource_desc) do
-    Apipie::ResourceDescription.new(UsersController, "users")
+    Apipie::ResourceDescription.new(UsersController, 'users')
   end
 
   let(:method_desc) do
     Apipie::MethodDescription.new(:show, resource_desc, dsl_data)
   end
 
-  describe "metadata" do
-
-    it "should return nil when no metadata is provided" do
+  describe 'metadata' do
+    it 'should return nil when no metadata is provided' do
       param = Apipie::ParamDescription.new(method_desc, :some_param, String)
-      param.to_json[:metadata].should == nil
+      param.to_json[:metadata].should.nil?
     end
 
-    it "should return the metadata" do
+    it 'should return the metadata' do
       meta = {
-        :lenght => 32,
-        :weight => '830g'
+        lenght: 32,
+        weight: '830g'
       }
-      param = Apipie::ParamDescription.new(method_desc, :some_param, String, :meta => meta)
+      param = Apipie::ParamDescription.new(method_desc, :some_param, String, meta: meta)
       param.to_json[:metadata].should == meta
     end
-
   end
 
-  describe "show option" do
-
-    it "should return true when show option is not provided" do
+  describe 'show option' do
+    it 'should return true when show option is not provided' do
       param = Apipie::ParamDescription.new(method_desc, :some_param, String)
       param.to_json[:show].should == true
     end
 
-    it "should return the show option" do
-      param = Apipie::ParamDescription.new(method_desc, :some_param, String, :show => true)
+    it 'should return the show option' do
+      param = Apipie::ParamDescription.new(method_desc, :some_param, String, show: true)
       param.to_json[:show].should == true
 
-      param = Apipie::ParamDescription.new(method_desc, :some_param, String, :show => false)
+      param = Apipie::ParamDescription.new(method_desc, :some_param, String, show: false)
       param.to_json[:show].should == false
     end
-
   end
 
-  describe "full_name" do
-    context "with no nested parameters" do
-
-      it "should return name" do
+  describe 'full_name' do
+    context 'with no nested parameters' do
+      it 'should return name' do
         param = Apipie::ParamDescription.new(method_desc, :some_param, String)
         param.to_json[:full_name].should == 'some_param'
       end
-
     end
 
-    context "with nested parameters" do
-
+    context 'with nested parameters' do
       it "should return the parameter's name nested in the parents name" do
         parent_param = Apipie::ParamDescription.new(method_desc, :parent, String)
-        nested_param = Apipie::ParamDescription.new(method_desc, :nested, String, :parent => parent_param)
+        nested_param = Apipie::ParamDescription.new(method_desc, :nested, String, parent: parent_param)
 
         nested_param.to_json[:full_name].should == 'parent[nested]'
       end
 
-      context "with the parent parameter set to not show" do
-
+      context 'with the parent parameter set to not show' do
         it "should return just the parameter's name" do
-          parent_param = Apipie::ParamDescription.new(method_desc, :parent, String, :show => false)
-          nested_param = Apipie::ParamDescription.new(method_desc, :nested, String, :parent => parent_param)
+          parent_param = Apipie::ParamDescription.new(method_desc, :parent, String, show: false)
+          nested_param = Apipie::ParamDescription.new(method_desc, :nested, String, parent: parent_param)
 
           nested_param.to_json[:full_name].should == 'nested'
         end
-
       end
     end
   end
 
-  describe "validator selection" do
-
-    it "should allow nil validator" do
+  describe 'validator selection' do
+    it 'should allow nil validator' do
       param = Apipie::ParamDescription.new(method_desc, :hidden_param, nil)
       param.validator.should be_nil
     end
 
-    it "should throw exception on unknown validator" do
+    it 'should throw exception on unknown validator' do
       proc { Apipie::ParamDescription.new(method_desc, :param, :unknown) }.should raise_error(RuntimeError, /Validator.*not found/)
     end
 
-    it "should pick type validator" do
+    it 'should pick type validator' do
       Apipie::Validator::BaseValidator.should_receive(:find).and_return(:validator_instance)
       param = Apipie::ParamDescription.new(method_desc, :param, String)
       param.validator.should == :validator_instance
     end
-
   end
 
-  describe "concern substitution" do
-
-    let(:concern_dsl_data) { dsl_data.merge(:from_concern => true) }
+  describe 'concern substitution' do
+    let(:concern_dsl_data) { dsl_data.merge(from_concern: true) }
 
     let(:concern_resource_desc) do
-      Apipie::ResourceDescription.new(ConcernsController, "concerns")
+      Apipie::ResourceDescription.new(ConcernsController, 'concerns')
     end
 
     let(:concern_method_desc) do
       Apipie::MethodDescription.new(:show, concern_resource_desc, concern_dsl_data)
     end
 
-    it "should replace string parameter name with colon prefix" do
-      param = Apipie::ParamDescription.new(concern_method_desc, ":string_subst", String)
-      param.name.should == "string"
+    it 'should replace string parameter name with colon prefix' do
+      param = Apipie::ParamDescription.new(concern_method_desc, ':string_subst', String)
+      param.name.should == 'string'
     end
 
-    it "should replace symbol parameter name" do
+    it 'should replace symbol parameter name' do
       param = Apipie::ParamDescription.new(concern_method_desc, :concern, String)
       param.name.should == :user
     end
 
-    it "should keep original value for strings without colon prefixes" do
-      param = Apipie::ParamDescription.new(concern_method_desc, "string_subst", String)
-      param.name.should == "string_subst"
+    it 'should keep original value for strings without colon prefixes' do
+      param = Apipie::ParamDescription.new(concern_method_desc, 'string_subst', String)
+      param.name.should == 'string_subst'
     end
 
     it "should keep the original value when a string can't be replaced" do
-      param = Apipie::ParamDescription.new(concern_method_desc, ":param", String)
-      param.name.should == ":param"
+      param = Apipie::ParamDescription.new(concern_method_desc, ':param', String)
+      param.name.should == ':param'
     end
 
     it "should keep the original value when a symbol can't be replaced" do
@@ -136,44 +123,37 @@ describe Apipie::ParamDescription do
     end
   end
 
-
-  describe "required_by_default config option" do
-    context "parameters required by default" do
-
+  describe 'required_by_default config option' do
+    context 'parameters required by default' do
       before { Apipie.configuration.required_by_default = true }
 
-      it "should set param as required by default" do
+      it 'should set param as required by default' do
         param = Apipie::ParamDescription.new(method_desc, :required_by_default, String)
         param.required.should be_true
       end
 
-      it "should be possible to set param as optional" do
-        param = Apipie::ParamDescription.new(method_desc, :optional, String, :required => false)
+      it 'should be possible to set param as optional' do
+        param = Apipie::ParamDescription.new(method_desc, :optional, String, required: false)
         param.required.should be_false
       end
-
     end
 
-    context "parameters optional by default" do
-
+    context 'parameters optional by default' do
       before { Apipie.configuration.required_by_default = false }
 
-      it "should set param as optional by default" do
+      it 'should set param as optional by default' do
         param = Apipie::ParamDescription.new(method_desc, :optional_by_default, String)
         param.required.should be_false
       end
 
-      it "should be possible to set param as required" do
-        param = Apipie::ParamDescription.new(method_desc, :required, String, 'description','required' => true)
+      it 'should be possible to set param as required' do
+        param = Apipie::ParamDescription.new(method_desc, :required, String, 'description', 'required' => true)
         param.required.should be_true
       end
-
     end
-
   end
 
-  describe "required params in action aware validator" do
-
+  describe 'required params in action aware validator' do
     subject { method_description.params[:user].validator.params_ordered }
 
     let(:required) do
@@ -184,13 +164,12 @@ describe Apipie::ParamDescription do
       subject.find_all(&:allow_nil).map(&:name)
     end
 
-    context "with resource creation" do
-
+    context 'with resource creation' do
       let(:method_description) do
         Apipie.get_method_description(UsersController, :create)
       end
 
-      it "makes the param required" do
+      it 'makes the param required' do
         required.should include :name
         required.should include :pass
       end
@@ -201,8 +180,7 @@ describe Apipie::ParamDescription do
       end
     end
 
-    context "with resource update" do
-
+    context 'with resource update' do
       let(:method_description) do
         Apipie.get_method_description(UsersController, :update)
       end
@@ -222,12 +200,12 @@ describe Apipie::ParamDescription do
       end
     end
 
-    context "with explicitly setting action type in param group" do
+    context 'with explicitly setting action type in param group' do
       let(:method_description) do
         Apipie.get_method_description(UsersController, :admin_create)
       end
 
-      it "makes the param required" do
+      it 'makes the param required' do
         required.should include :name
         required.should include :pass
       end
@@ -239,65 +217,55 @@ describe Apipie::ParamDescription do
     end
   end
 
-
   describe 'sub params' do
-
     context 'with HashValidator' do
-
       subject do
         Apipie::ParamDescription.new(method_desc, :param, Hash) do
           param :answer, Fixnum
         end
       end
 
-      it "should include the nested params in the json" do
+      it 'should include the nested params in the json' do
         sub_params = subject.to_json[:params]
         sub_params.size.should == 1
         sub_param = sub_params.first
-        sub_param[:name].should == "answer"
-        sub_param[:full_name].should == "param[answer]"
+        sub_param[:name].should == 'answer'
+        sub_param[:full_name].should == 'param[answer]'
       end
-
     end
 
     context 'with NestedValidator' do
-
       subject do
         Apipie::ParamDescription.new(method_desc, :param, Array) do
           param :answer, Fixnum
         end
       end
 
-      it "should include the nested params in the json" do
+      it 'should include the nested params in the json' do
         sub_params = subject.to_json[:params]
         sub_params.size.should == 1
         sub_param = sub_params.first
-        sub_param[:name].should == "answer"
-        sub_param[:full_name].should == "param[answer]"
+        sub_param[:name].should == 'answer'
+        sub_param[:full_name].should == 'param[answer]'
       end
-
     end
 
     context 'with flat validator' do
-
       subject do
         Apipie::ParamDescription.new(method_desc, :param, String)
       end
 
-      it "should include the nested params in the json" do
+      it 'should include the nested params in the json' do
         subject.to_json[:params].should be_nil
       end
-
     end
-
   end
 
-  describe "Array with classes" do
-    it "should be valid for objects included in class array" do
+  describe 'Array with classes' do
+    it 'should be valid for objects included in class array' do
       param = Apipie::ParamDescription.new(method_desc, :param, [Fixnum, String])
-      expect { param.validate("1") }.should_not raise_error
+      expect { param.validate('1') }.should_not raise_error
       expect { param.validate(Fixnum) }.should raise_error
     end
   end
-
 end

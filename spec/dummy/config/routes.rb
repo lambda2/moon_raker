@@ -1,14 +1,12 @@
 Dummy::Application.routes.draw do
-
   scope ENV['RAILS_RELATIVE_URL_ROOT'] || '/' do
-
     scope '/api' do
       resources :users do
         collection do
           post :create_route
         end
       end
-      resources :concerns, :only => [:index, :show]
+      resources :concerns, only: [:index, :show]
       namespace :files do
         get '/*file_path', to: :download, format: false
       end
@@ -25,6 +23,6 @@ Dummy::Application.routes.draw do
 
     apipie
   end
-  root :to => 'apipie/apipies#index'
+  root to: 'apipie/apipies#index'
   match '(/)*path' => redirect('http://www.example.com'), :via => :all
 end

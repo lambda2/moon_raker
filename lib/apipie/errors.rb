@@ -1,5 +1,4 @@
 module Apipie
-
   class Error < StandardError
   end
 
@@ -40,5 +39,4 @@ module Apipie
       "Invalid parameter '#{@param}' value #{@value.inspect}: #{@error}"
     end
   end
-
 end

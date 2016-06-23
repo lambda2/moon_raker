@@ -1,7 +1,5 @@
 module Apipie
-
   class ErrorDescription
-
     attr_reader :code, :description, :metadata
 
     def self.from_dsl_data(args)
@@ -11,7 +9,7 @@ module Apipie
                                    options)
     end
 
-    def initialize(code_or_options, desc=nil, options={})
+    def initialize(code_or_options, desc = nil, options = {})
       if code_or_options.is_a? Hash
         code_or_options.symbolize_keys!
         @code = code_or_options[:code]
@@ -26,12 +24,10 @@ module Apipie
 
     def to_json
       {
-        :code => code,
-        :description => description,
-        :metadata => metadata
+        code: code,
+        description: description,
+        metadata: metadata
       }
     end
-
   end
-
 end
