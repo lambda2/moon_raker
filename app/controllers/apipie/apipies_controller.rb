@@ -20,7 +20,7 @@ module Apipie
     end
 
     def guides
-      @section = params[:section] || :introduction
+      @section = params[:section] || :specification
 
       title = @section.to_s.humanize
       desc = "Guides for #{title}"
