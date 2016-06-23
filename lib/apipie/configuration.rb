@@ -1,7 +1,7 @@
 module Apipie
   class Configuration
 
-    attr_accessor :app_name, :app_info, :copyright, :markup, :disqus_shortname,
+    attr_accessor :app_name, :app_info, :copyright, :markup, :disqus_shortname, :ga,
       :api_base_url, :doc_base_url, :required_by_default, :layout,
       :default_version, :debug, :version_in_url, :namespaced_resources,
       :validate, :validate_value, :validate_presence, :validate_key, :authenticate, :doc_path,
@@ -115,6 +115,11 @@ module Apipie
       !@disqus_shortname.blank?
     end
 
+
+    def use_ga?
+      !@ga.blank?
+    end
+
     # set app description for default version
     # to maintain backward compatibility
     # new way: config.app_info[version] = description
@@ -149,6 +154,7 @@ module Apipie
       @doc_base_url = "/apipie"
       @layout = "apipie/apipie"
       @disqus_shortname = nil
+      @ga = nil
       @default_version = "1.0"
       @debug = false
       @version_in_url = true
