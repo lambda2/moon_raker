@@ -114,6 +114,7 @@ module Apipie
     end
 
     def method_apis_to_json(lang = nil)
+      raise 'lol'
       @apis.each.collect do |api|
         {
           api_url: create_api_url(api),

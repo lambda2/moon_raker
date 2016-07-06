@@ -8,9 +8,9 @@ module Apipie
     layout Apipie.configuration.layout
 
     around_filter :set_script_name
-    before_filter :authenticate
+    # before_filter :authenticate
     
-    skip_authentication
+    # skip_authentication
     
 
     def authenticate

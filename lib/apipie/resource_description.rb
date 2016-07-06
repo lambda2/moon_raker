@@ -29,6 +29,7 @@ module Apipie
     end
 
     def update_from_dsl_data(dsl_data)
+
       @_name = dsl_data[:resource_name] if dsl_data[:resource_name]
       @_full_description = Apipie.markup_to_html(dsl_data[:description])
       @_short_description = dsl_data[:short_description]
