@@ -1,16 +1,18 @@
 module Apipie
   class Configuration
-    attr_accessor :app_name, :app_info, :copyright, :markup, :disqus_shortname, :ga,
-                  :api_base_url, :doc_base_url, :required_by_default, :layout,
-                  :default_version, :debug, :version_in_url, :namespaced_resources,
-                  :validate, :validate_value, :validate_presence, :validate_key, :authenticate, :doc_path,
-                  :show_all_examples, :process_params, :update_checksum, :checksum_path,
-                  :link_extension, :record, :languages, :translate, :locale, :default_locale,
-                  :persist_show_in_doc
 
-    alias validate? validate
-    alias required_by_default? required_by_default
-    alias namespaced_resources? namespaced_resources
+
+    attr_accessor :app_name, :app_info, :copyright, :markup, :disqus_shortname,
+      :api_base_url, :doc_base_url, :required_by_default, :layout,
+      :default_version, :debug, :version_in_url, :namespaced_resources,
+      :validate, :validate_value, :validate_presence, :validate_key, :authenticate, :doc_path,
+      :show_all_examples, :process_params, :update_checksum, :checksum_path,
+      :link_extension, :record, :languages, :translate, :locale, :default_locale,
+      :persist_show_in_doc, :authorize
+
+    alias_method :validate?, :validate
+    alias_method :required_by_default?, :required_by_default
+    alias_method :namespaced_resources?, :namespaced_resources
 
     # matcher to be used in Dir.glob to find controllers to be reloaded e.g.
     #

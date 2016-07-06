@@ -6,7 +6,7 @@ module Apipie
   # required - boolean if required
   # validator - Validator::BaseValidator subclass
   class ParamDescription
-    attr_reader :method_description, :name, :desc, :allow_nil, :validator, :options, :metadata, :show, :as
+    attr_reader :method_description, :name, :desc, :allow_nil, :validator, :options, :metadata, :show, :as, :validations
     attr_accessor :parent, :required
 
     def self.from_dsl_data(method_description, args)
@@ -44,11 +44,7 @@ module Apipie
       @parent = @options[:parent]
       @metadata = @options[:meta]
 
-      @required = if @options.key? :required
-                    @options[:required]
-                  else
-                    Apipie.configuration.required_by_default?
-      end
+      @required = is_required?
 
       @show = if @options.key? :show
                 @options[:show]
@@ -64,6 +60,8 @@ module Apipie
         @validator = Validator::BaseValidator.find(self, validator, @options, block)
         raise "Validator for #{validator} not found." unless @validator
       end
+
+      @validations = Array(options[:validations]).map {|v| concern_subst(Apipie.markup_to_html(v)) }
     end
 
     def from_concern?
@@ -103,15 +101,16 @@ module Apipie
     end
 
     def to_json(lang = nil)
-      hash = { name: name.to_s,
-               full_name: full_name,
-               description: preformat_text(Apipie.app.translate(@options[:desc], lang)),
-               required: required,
-               allow_nil: allow_nil,
-               validator: validator.to_s,
-               expected_type: validator.expected_type,
-               metadata: metadata,
-               show: show }
+      hash = { :name => name.to_s,
+               :full_name => full_name,
+               :description => preformat_text(Apipie.app.translate(@options[:desc], lang)),
+               :required => required,
+               :allow_nil => allow_nil,
+               :validator => validator.to_s,
+               :expected_type => validator.expected_type,
+               :metadata => metadata,
+               :show => show,
+               :validations => validations }
       if sub_params = validator.params_ordered
         hash[:params] = sub_params.map { |p| p.to_json(lang) }
       end
@@ -202,5 +201,18 @@ module Apipie
     def preformat_text(text)
       concern_subst(Apipie.markup_to_html(text || ''))
     end
+
+    def is_required?
+      if @options.has_key?(:required)
+        if (@options[:required] == true) || (@options[:required] == false)
+          @options[:required]
+        else
+          Array(@options[:required]).include?(@method_description.method.to_sym)
+        end
+      else
+        Apipie.configuration.required_by_default?
+      end
+    end
+
   end
 end

@@ -1,20 +1,20 @@
 Apipie.configure do |config|
-  config.app_name = 'Test app'
-  config.copyright = '&copy; 2012 Pavel Pokorny'
+  config.app_name = "Test app"
+  config.copyright = "&copy; 2012 Pavel Pokorny"
 
   # set default API version
   # can be overriden in resource_description
   # by default is it 1.0 if not specified anywhere
   # this must be defined before api_base_url and app_info
-  config.default_version = 'development'
+  config.default_version = "development"
 
-  config.doc_base_url = '/apidoc'
+  config.doc_base_url = "/apidoc"
 
   # default version base url
   # to define base url for specifid version use
   # config.api_base_url[version] = url
   # or define it in your base controller
-  config.api_base_url = '/api'
+  config.api_base_url = "/api"
 
   # set to true to turn on/off the cache. To generate the cache use:
   #
@@ -28,7 +28,7 @@ Apipie.configure do |config|
   # config.reload_controllers = false
 
   # for reloading to work properly you need to specify where your api controllers are (like in Dir.glob):
-  config.api_controllers_matcher = File.join(Rails.root, 'app', 'controllers', '**', '*.rb')
+  config.api_controllers_matcher = File.join(Rails.root, "app", "controllers", "**","*.rb")
 
   # specify routes if your application uses router differ from Rails default one
   config.api_routes = Rails.application.routes
@@ -50,7 +50,7 @@ Apipie.configure do |config|
   # set default version info, to describe specific version use
   # config.app_info[version] = description
   # or put this in your base or application controller
-  config.app_info = 'Dummy app for testing'
+  config.app_info = "Dummy app for testing"
 
   # show debug informations
   config.debug = false
@@ -62,7 +62,7 @@ Apipie.configure do |config|
   # use custom layout
   # use Apipie.include_stylesheets and Apipie.include_javascripts
   # to include apipies css and js
-  config.layout = 'application'
+  config.layout = "application"
 
   # specify disqus site shortname to show discusion on each page
   # to show it in custom layout, use `render 'disqus' if Apipie.configuration.use_disqus?`
@@ -75,6 +75,7 @@ end
 
 # integer validator
 class Apipie::Validator::IntegerValidator < Apipie::Validator::BaseValidator
+
   def initialize(param_description, argument)
     super(param_description)
     @type = argument
@@ -85,9 +86,9 @@ class Apipie::Validator::IntegerValidator < Apipie::Validator::BaseValidator
     !!(value.to_s =~ /^[-+]?[0-9]+$/)
   end
 
-  def self.build(param_description, argument, _options, _block)
+  def self.build(param_description, argument, options, block)
     if argument == Integer || argument == Fixnum
-      new(param_description, argument)
+      self.new(param_description, argument)
     end
   end
 

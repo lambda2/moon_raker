@@ -1,19 +1,20 @@
 class UsersController < ApplicationController
+
   resource_description do
     short 'Site members'
     path '/users'
     formats ['json']
-    param :id, Fixnum, desc: 'User ID', required: false
-    param :legacy_param, Hash, desc: 'Deprecated parameter not documented', show: false, required: false do
-      param :resource_param, Hash, desc: 'Param description for all methods' do
-        param :ausername, String, desc: 'Username for login', required: true
-        param :apassword, String, desc: 'Password for login', required: true
+    param :id, Fixnum, :desc => "User ID", :required => false
+    param :legacy_param, Hash, :desc => 'Deprecated parameter not documented', :show => false, :required => false do
+      param :resource_param, Hash, :desc => 'Param description for all methods' do
+        param :ausername, String, :desc => "Username for login", :required => true
+        param :apassword, String, :desc => "Password for login", :required => true
       end
     end
-    api_version 'development'
-    error 404, 'Missing', meta: { some: 'metadata' }
-    error 500, 'Server crashed for some <%= reason %>'
-    meta new_style: true, author: { name: 'John', surname: 'Doe' }
+    api_version "development"
+    error 404, "Missing", :meta => {:some => "metadata"}
+    error 500, "Server crashed for some <%= reason %>"
+    meta :new_style => true, :author => { :name => 'John', :surname => 'Doe' }
     description <<-EOS
       == Long description
 
@@ -167,107 +168,109 @@ class UsersController < ApplicationController
 
     More builder documentation can be found at http://builder.rubyforge.org.
   eos
-  api :GET, '/users/:id', 'Show user profile'
+  api :GET, "/users/:id", "Show user profile"
   show false
-  formats %w(json jsonp)
-  error 401, 'Unauthorized'
-  error code: 404, description: 'Not Found'
-  param :id, Integer, desc: 'user id', required: true
-  param :session, String, desc: 'user is logged in', required: true
-  param :regexp_param, /^[0-9]* years/, desc: 'regexp param'
-  param :array_param, ['100', 'one', 'two', '1', '2'], desc: 'array validator'
-  param :boolean_param, [true, false], desc: 'array validator with boolean'
-  param :proc_param, lambda do |val|
-    val == 'param value' ? true : "The only good value is 'param value'."
-  end, desc: 'proc validator'
-  param :briefer_dsl, String, 'You dont need :desc => from now'
-  param :meta_param, String, desc: 'A parameter with some additional metadata', meta: [:some, :more, :info]
-  meta success_message: 'Some message'
-  param :hash_param, Hash, desc: 'Hash param' do
+  formats ['json', 'jsonp']
+  error 401, "Unauthorized"
+  error :code => 404, :description => "Not Found"
+  param :id, Integer, :desc => "user id", :required => true
+  param :session, String, :desc => "user is logged in", :required => true, :missing_message => lambda { "session_parameter_is_required" }
+  param :regexp_param, /^[0-9]* years/, :desc => "regexp param"
+  param :regexp2, /\b[A-Z0-9._%+-=]+@[A-Z0-9.-]+.[A-Z]{2,}\b/i, :desc => "email regexp"
+  param :array_param, ["100", "one", "two", "1", "2"], :desc => "array validator"
+  param :boolean_param, [true, false], :desc => "array validator with boolean"
+  param :proc_param, lambda { |val|
+    val == "param value" ? true : "The only good value is 'param value'."
+  }, :desc => "proc validator"
+  param :briefer_dsl, String, "You dont need :desc => from now"
+  param :meta_param, String, :desc => "A parameter with some additional metadata", :meta => [:some, :more, :info]
+  meta :success_message => "Some message"
+  param :hash_param, Hash, :desc => "Hash param" do
     param :dummy_hash, Hash do
-      param :dummy_2, String, required: true
+      param :dummy_2, String, :required => true
     end
   end
   def show
-    unless params[:session] == 'secret_hash'
-      render text: 'Not authorized', status: 401
+    unless params[:session] == "secret_hash"
+      render :text => "Not authorized", :status => 401
       return
     end
 
     unless params[:id].to_i == 5
-      render(text: 'Not Found', status: 404) && (return)
+      render :text => "Not Found", :status => 404 and return
     end
 
-    render text: 'OK'
+    render :text => "OK"
   end
 
   def_param_group :credentials do
-    param :name, String, desc: 'Username for login', required: true
-    param :pass, String, desc: 'Password for login', required: true
+    param :name, String, :desc => "Username for login", :required => true
+    param :pass, String, :desc => "Password for login", :required => true
   end
 
   def_param_group :user do
-    param :user, Hash, desc: 'User info', required: true, action_aware: true do
+    param :user, Hash, :desc => "User info", :required => true, :action_aware => true do
       param_group :credentials
-      param :membership, ['standard', 'premium'], desc: 'User membership', allow_nil: false
+      param :membership, ["standard","premium"], :desc => "User membership", :allow_nil => false
     end
   end
 
-  api :POST, '/users', 'Create user'
+  api :POST, "/users", "Create user"
   param_group :user
   param :user, Hash do
     param :permalink, String
   end
-  param :facts, Hash, desc: 'Additional optional facts about the user', allow_nil: true
+  param :facts, Hash, :desc => "Additional optional facts about the user", :allow_nil => true
   def create
-    render text: "OK #{params.inspect}"
+    render :text => "OK #{params.inspect}"
   end
 
-  api :PUT, '/users/:id', 'Update an user'
+  api :PUT, "/users/:id", "Update an user"
   param_group :user
   param :comments, Array do
     param :comment, String
   end
   def update
-    render text: "OK #{params.inspect}"
+    render :text => "OK #{params.inspect}"
   end
 
-  api :POST, '/users/admin', 'Create admin user'
-  param_group :user, as: :create
+  api :POST, "/users/admin", "Create admin user"
+  param_group :user, :as => :create
   def admin_create
-    render text: "OK #{params.inspect}"
+    render :text => "OK #{params.inspect}"
   end
 
-  api :GET, '/users', 'List users'
-  error code: 401, desc: 'Unauthorized'
-  error code: 404, desc: 'Not Found'
-  desc 'List all users.'
+  api :GET, "/users", "List users"
+  error :code => 401, :desc => "Unauthorized"
+  error :code => 404, :desc => "Not Found"
+  desc "List all users."
   param :oauth, nil,
-        desc: 'Hide this global param (eg dont need auth here)'
+        :desc => "Hide this global param (eg dont need auth here)"
   def index
-    render text: 'List of users'
+    render :text => "List of users"
   end
 
   api :GET, '/company_users', 'Get company users'
   api :GET, '/company/:id/users', 'Get users working in given company'
-  param :id, Integer, desc: 'Company ID'
+  param :id, Integer, :desc => "Company ID"
   def two_urls
-    render text: 'List of users'
+    render :text => 'List of users'
   end
 
   api :GET, '/users/see_another', 'Boring method'
   show false
   see 'development#users#create'
-  see 'development#users#index', 'very interesting method reference'
+  see 'development#users#index', "very interesting method reference"
   desc 'This method is boring, look at users#create.  It is hidden from documentation.'
   def see_another
-    render text: 'This is very similar to create action'
+    render :text => 'This is very similar to create action'
   end
+
 
   api :GET, '/users/desc_from_file', 'desc from file'
   document 'users/desc_from_file.md'
   def desc_from_file
-    render text: 'document from file action'
+    render :text => 'document from file action'
   end
 
   api! 'Create user'
@@ -275,7 +278,7 @@ class UsersController < ApplicationController
   param :user, Hash do
     param :permalink, String
   end
-  param :facts, Hash, desc: 'Additional optional facts about the user', allow_nil: true
+  param :facts, Hash, :desc => "Additional optional facts about the user", :allow_nil => true
   def create_route
   end
 
