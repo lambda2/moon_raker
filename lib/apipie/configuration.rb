@@ -2,7 +2,7 @@ module Apipie
   class Configuration
 
 
-    attr_accessor :app_name, :app_info, :copyright, :markup, :disqus_shortname,
+    attr_accessor :app_name, :app_info, :copyright, :ga, :markup, :disqus_shortname,
       :api_base_url, :doc_base_url, :required_by_default, :layout,
       :default_version, :debug, :version_in_url, :namespaced_resources,
       :validate, :validate_value, :validate_presence, :validate_key, :authenticate, :doc_path,

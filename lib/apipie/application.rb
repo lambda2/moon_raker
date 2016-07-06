@@ -62,10 +62,18 @@ module Apipie
     end
 
     def routes_for_action(controller, method, args)
+      cname = controller.to_s.underscore.gsub(/_controller$/,'')
       routes = rails_routes.select do |route|
-        controller == route_app_controller(route.app, route) &&
-          method.to_s == route.defaults[:action]
+        route.defaults &&
+        route.defaults[:controller] == cname &&
+        method.to_s == route.defaults[:action]
       end
+      
+      # binding.pry
+      # routes = rails_routes.select do |route|
+      #   controller == route_app_controller(route.app, route) &&
+      #     method.to_s == route.defaults[:action]
+      # end
 
       Apipie.configuration.routes_formatter.format_routes(routes, args)
     end
