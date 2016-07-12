@@ -1,7 +1,7 @@
 module MoonRaker
   module Extractor
     class Recorder
-      MULTIPART_BOUNDARY = 'APIPIE_RECORDER_EXAMPLE_BOUNDARY'.freeze
+      MULTIPART_BOUNDARY = 'MOONRAKER_RECORDER_EXAMPLE_BOUNDARY'.freeze
 
       def initialize
         @ignored_params = [:controller, :action]

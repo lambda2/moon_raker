@@ -165,7 +165,7 @@ module MoonRaker
   end
 end
 
-MoonRaker::Extractor.start ENV['APIPIE_RECORD'] if ENV['APIPIE_RECORD']
+MoonRaker::Extractor.start ENV['MOONRAKER_RECORD'] if ENV['MOONRAKER_RECORD']
 
 at_exit do
   MoonRaker::Extractor.finish

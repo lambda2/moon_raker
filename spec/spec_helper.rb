@@ -2,7 +2,7 @@ require 'rubygems'
 require 'bundler/setup'
 
 ENV["RAILS_ENV"] ||= 'test'
-APIPIE_ROOT = File.expand_path('../..', __FILE__)
+MOONRAKER_ROOT = File.expand_path('../..', __FILE__)
 require File.expand_path("../dummy/config/environment", __FILE__)
 
 require 'rspec/rails'

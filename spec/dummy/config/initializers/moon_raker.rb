@@ -61,7 +61,7 @@ MoonRaker.configure do |config|
 
   # use custom layout
   # use MoonRaker.include_stylesheets and MoonRaker.include_javascripts
-  # to include moon_rakers css and js
+  # to include moon_raker css and js
   config.layout = "application"
 
   # specify disqus site shortname to show discusion on each page

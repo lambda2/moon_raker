@@ -7,7 +7,7 @@ Gem::Specification.new do |s|
   s.version     = MoonRaker::VERSION
   s.authors     = ["Pavel Pokorny","Ivan Necas"]
   s.email       = ["pajkycz@gmail.com", "inecas@redhat.com"]
-  s.homepage    = "http://github.com/MoonRaker/moon_raker-rails"
+  s.homepage    = "http://github.com/lambda2/moon_raker"
   s.summary     = %q{Rails REST API documentation tool}
   s.description = %q{Rails REST API documentation tool}
 

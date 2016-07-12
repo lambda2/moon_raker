@@ -9,12 +9,12 @@ shared_context "rake" do
   subject         { rake[task_name] }
 
   def loaded_files_excluding_current_rake_file
-    $".reject {|file| file == File.expand_path("#{task_path}.rake", APIPIE_ROOT) }
+    $".reject {|file| file == File.expand_path("#{task_path}.rake", MOONRAKER_ROOT) }
   end
 
   before do
     Rake.application = rake
-    Rake.application.rake_require(task_path, [APIPIE_ROOT], loaded_files_excluding_current_rake_file)
+    Rake.application.rake_require(task_path, [MOONRAKER_ROOT], loaded_files_excluding_current_rake_file)
 
     Rake::Task.define_task(:environment)
   end

@@ -25,6 +25,6 @@ Dummy::Application.routes.draw do
 
     moon_raker
   end
-  root :to => 'moon_raker/moon_rakers#index'
+  root :to => 'moon_raker/moon_raker#index'
   match '(/)*path' => redirect('http://www.example.com'), :via => :all
 end
