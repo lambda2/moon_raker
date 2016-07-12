@@ -365,7 +365,7 @@ h3 i.material-icons {
     -webkit-align-self: stretch;
     -ms-flex-item-align: stretch;
     align-self: stretch;
-    padding-right: 20px;
+    // padding-right: 20px;
     max-width: 100%;
 }
 
