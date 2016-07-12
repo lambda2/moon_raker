@@ -1,17 +1,17 @@
 require "spec_helper"
 
-describe Apipie::MethodDescription do
+describe MoonRaker::MethodDescription do
 
-  let(:dsl_data) { ActionController::Base.send(:_apipie_dsl_data_init) }
+  let(:dsl_data) { ActionController::Base.send(:_moon_raker_dsl_data_init) }
 
   describe "metadata" do
 
     before(:each) do
-      @resource = Apipie::ResourceDescription.new(ApplicationController, "dummy")
+      @resource = MoonRaker::ResourceDescription.new(ApplicationController, "dummy")
     end
 
     it "should return nil when no metadata is provided" do
-      method = Apipie::MethodDescription.new(:a, @resource, dsl_data)
+      method = MoonRaker::MethodDescription.new(:a, @resource, dsl_data)
       expect(method.to_json[:metadata]).to eq(nil)
     end
 
@@ -20,7 +20,7 @@ describe Apipie::MethodDescription do
         :lenght => 32,
         :weight => '830g'
       }
-      method = Apipie::MethodDescription.new(:a, @resource, dsl_data.update(:meta => meta))
+      method = MoonRaker::MethodDescription.new(:a, @resource, dsl_data.update(:meta => meta))
       expect(method.to_json[:metadata]).to eq(meta)
     end
 
@@ -28,12 +28,12 @@ describe Apipie::MethodDescription do
 
   describe "deprecated flag" do
     before(:each) do
-      @resource = Apipie::ResourceDescription.new(ApplicationController, "dummy")
+      @resource = MoonRaker::ResourceDescription.new(ApplicationController, "dummy")
     end
 
     it "should return the deprecated flag when provided" do
       dsl_data[:api_args] = [[:GET, "/foo/bar", "description", {:deprecated => true}]]
-      method = Apipie::MethodDescription.new(:a, @resource, dsl_data)
+      method = MoonRaker::MethodDescription.new(:a, @resource, dsl_data)
       expect(method.method_apis_to_json.first[:deprecated]).to eq(true)
     end
   end
@@ -41,11 +41,11 @@ describe Apipie::MethodDescription do
   describe "params descriptions" do
 
     before(:each) do
-      @resource = Apipie::ResourceDescription.new(ApplicationController, "dummy")
+      @resource = MoonRaker::ResourceDescription.new(ApplicationController, "dummy")
       dsl_data[:params] = [[:a, String, nil, {}, nil],
                            [:b, String, nil, {}, nil],
                            [:c, String, nil, {}, nil]]
-      @method = Apipie::MethodDescription.new(:a, @resource, dsl_data)
+      @method = MoonRaker::MethodDescription.new(:a, @resource, dsl_data)
       @resource.add_method_description @method
     end
 

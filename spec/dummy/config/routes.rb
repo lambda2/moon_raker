@@ -23,8 +23,8 @@ Dummy::Application.routes.draw do
       end
     end
 
-    apipie
+    moon_raker
   end
-  root :to => 'apipie/apipies#index'
+  root :to => 'moon_raker/moon_rakers#index'
   match '(/)*path' => redirect('http://www.example.com'), :via => :all
 end

@@ -5,75 +5,75 @@
 v0.3.6
 ------
 
-- Fixed to\_json encoding error that occurs with uploaded file parameters. [\#429](https://github.com/Apipie/apipie-rails/pull/429) ([hossenlopp](https://github.com/hossenlopp))
-- Render enum param values as CODE [\#426](https://github.com/Apipie/apipie-rails/pull/426) ([febeling](https://github.com/febeling))
-- Fix layout path \(Rails 4.2.5.1 compatibility\) [\#425](https://github.com/Apipie/apipie-rails/pull/425) ([halilim](https://github.com/halilim))
-- Unify indentations across all locale files [\#423](https://github.com/Apipie/apipie-rails/pull/423) ([springerigor](https://github.com/springerigor))
-- Fix typo in Action Aware Params section of readme [\#419](https://github.com/Apipie/apipie-rails/pull/419) ([ryanlabouve](https://github.com/ryanlabouve))
-- Rails4.2 [\#413](https://github.com/Apipie/apipie-rails/pull/413) ([ferdinandrosario](https://github.com/ferdinandrosario))
-- Add viewport meta tag. [\#412](https://github.com/Apipie/apipie-rails/pull/412) ([buren](https://github.com/buren))
-- removed beta version [\#411](https://github.com/Apipie/apipie-rails/pull/411) ([ferdinandrosario](https://github.com/ferdinandrosario))
-- updated patch [\#410](https://github.com/Apipie/apipie-rails/pull/410) ([ferdinandrosario](https://github.com/ferdinandrosario))
-- Nerian layout fix [\#409](https://github.com/Apipie/apipie-rails/pull/409) ([Pajk](https://github.com/Pajk))
-- Add Turkish translations [\#407](https://github.com/Apipie/apipie-rails/pull/407) ([halilim](https://github.com/halilim))
-- Update README.rst [\#405](https://github.com/Apipie/apipie-rails/pull/405) ([type-face](https://github.com/type-face))
-- add german locale [\#394](https://github.com/Apipie/apipie-rails/pull/394) ([mjansing](https://github.com/mjansing))
-- Add custom message support for missing parameters  [\#390](https://github.com/Apipie/apipie-rails/pull/390) ([jcalvert](https://github.com/jcalvert))
-- A boolean parameters can be configured with both :bool and :boolean [\#124](https://github.com/Apipie/apipie-rails/pull/124) ([Nerian](https://github.com/Nerian))
+- Fixed to\_json encoding error that occurs with uploaded file parameters. [\#429](https://github.com/MoonRaker/moon_raker-rails/pull/429) ([hossenlopp](https://github.com/hossenlopp))
+- Render enum param values as CODE [\#426](https://github.com/MoonRaker/moon_raker-rails/pull/426) ([febeling](https://github.com/febeling))
+- Fix layout path \(Rails 4.2.5.1 compatibility\) [\#425](https://github.com/MoonRaker/moon_raker-rails/pull/425) ([halilim](https://github.com/halilim))
+- Unify indentations across all locale files [\#423](https://github.com/MoonRaker/moon_raker-rails/pull/423) ([springerigor](https://github.com/springerigor))
+- Fix typo in Action Aware Params section of readme [\#419](https://github.com/MoonRaker/moon_raker-rails/pull/419) ([ryanlabouve](https://github.com/ryanlabouve))
+- Rails4.2 [\#413](https://github.com/MoonRaker/moon_raker-rails/pull/413) ([ferdinandrosario](https://github.com/ferdinandrosario))
+- Add viewport meta tag. [\#412](https://github.com/MoonRaker/moon_raker-rails/pull/412) ([buren](https://github.com/buren))
+- removed beta version [\#411](https://github.com/MoonRaker/moon_raker-rails/pull/411) ([ferdinandrosario](https://github.com/ferdinandrosario))
+- updated patch [\#410](https://github.com/MoonRaker/moon_raker-rails/pull/410) ([ferdinandrosario](https://github.com/ferdinandrosario))
+- Nerian layout fix [\#409](https://github.com/MoonRaker/moon_raker-rails/pull/409) ([Pajk](https://github.com/Pajk))
+- Add Turkish translations [\#407](https://github.com/MoonRaker/moon_raker-rails/pull/407) ([halilim](https://github.com/halilim))
+- Update README.rst [\#405](https://github.com/MoonRaker/moon_raker-rails/pull/405) ([type-face](https://github.com/type-face))
+- add german locale [\#394](https://github.com/MoonRaker/moon_raker-rails/pull/394) ([mjansing](https://github.com/mjansing))
+- Add custom message support for missing parameters  [\#390](https://github.com/MoonRaker/moon_raker-rails/pull/390) ([jcalvert](https://github.com/jcalvert))
+- A boolean parameters can be configured with both :bool and :boolean [\#124](https://github.com/MoonRaker/moon_raker-rails/pull/124) ([Nerian](https://github.com/Nerian))
 
 v0.3.5
 ------
 
 * Cleaning up unreachable code
-  [#385](https://github.com/Apipie/apipie-rails/pull/385) [@voxik][]
+  [#385](https://github.com/MoonRaker/moon_raker-rails/pull/385) [@voxik][]
 * Russian translation
-  [#352](https://github.com/Apipie/apipie-rails/pull/352) [@Le6ow5k1][]
+  [#352](https://github.com/MoonRaker/moon_raker-rails/pull/352) [@Le6ow5k1][]
 * Ability to hide controller methods from documentation
-  [#356](https://github.com/Apipie/apipie-rails/pull/356) [@davidcollie][]
+  [#356](https://github.com/MoonRaker/moon_raker-rails/pull/356) [@davidcollie][]
 * Use doc_path configuration in rake tasks
-  [#358](https://github.com/Apipie/apipie-rails/pull/358)  [@saneshark][]
+  [#358](https://github.com/MoonRaker/moon_raker-rails/pull/358)  [@saneshark][]
 * Chinese translation
-  [#363](https://github.com/Apipie/apipie-rails/pull/363)  [@debbbbie][]
+  [#363](https://github.com/MoonRaker/moon_raker-rails/pull/363)  [@debbbbie][]
 * Polish translation
-  [#375](https://github.com/Apipie/apipie-rails/pull/375)  [@dbackowski][]
+  [#375](https://github.com/MoonRaker/moon_raker-rails/pull/375)  [@dbackowski][]
 * Spanish translation
-  [#376](https://github.com/Apipie/apipie-rails/pull/376)  [@isseu][]
+  [#376](https://github.com/MoonRaker/moon_raker-rails/pull/376)  [@isseu][]
 * Add an alternative to action aware required param
-  [#377](https://github.com/Apipie/apipie-rails/pull/377)  [@mourad-ifeelgoods][]
+  [#377](https://github.com/MoonRaker/moon_raker-rails/pull/377)  [@mourad-ifeelgoods][]
 
 v0.3.4
 ------
 
 * Fixing occasional NoMethodError with ActionDispatch::Reloader
-  [#348](https://github.com/Apipie/apipie-rails/pull/348) [@saneshark][]
+  [#348](https://github.com/MoonRaker/moon_raker-rails/pull/348) [@saneshark][]
 * Portuguese translation
-  [#344](https://github.com/Apipie/apipie-rails/pull/344) [@dadario][]
+  [#344](https://github.com/MoonRaker/moon_raker-rails/pull/344) [@dadario][]
 
 v0.3.3
 ------
 
 * Support for describing headers
-  [#341](https://github.com/Apipie/apipie-rails/pull/341) [@iliabylich][]
+  [#341](https://github.com/MoonRaker/moon_raker-rails/pull/341) [@iliabylich][]
 
 v0.3.2
 ------
 
 * PATCH support for examples recording
-  [#332](https://github.com/Apipie/apipie-rails/pull/332) [@akenger][]
+  [#332](https://github.com/MoonRaker/moon_raker-rails/pull/332) [@akenger][]
 * Recursively search for API controllers by default for new projects
-  [#333](https://github.com/Apipie/apipie-rails/pull/333) [@baweaver][]
+  [#333](https://github.com/MoonRaker/moon_raker-rails/pull/333) [@baweaver][]
 * Handling recursive route definitions with `api!` keyword
-  [#338](https://github.com/Apipie/apipie-rails/pull/338) [@stormsilver][]
+  [#338](https://github.com/MoonRaker/moon_raker-rails/pull/338) [@stormsilver][]
 * Support for eager-loaded controllers
-  [#329](https://github.com/Apipie/apipie-rails/pull/329) [@mtparet][]
+  [#329](https://github.com/MoonRaker/moon_raker-rails/pull/329) [@mtparet][]
 
 v0.3.1
 ------
 
 * Support for ``api!`` keyword in concerns 
-  [#322](https://github.com/Apipie/apipie-rails/pull/322) [@iNecas][]
+  [#322](https://github.com/MoonRaker/moon_raker-rails/pull/322) [@iNecas][]
 * More explicit ordering of the static dispatcher middleware
-  [#315](https://github.com/Apipie/apipie-rails/pull/315) [@iNecas][]
+  [#315](https://github.com/MoonRaker/moon_raker-rails/pull/315) [@iNecas][]
 
 v0.3.0
 ------
@@ -81,41 +81,41 @@ This should be a backward compatible release. However, the number of new
 significant features deserves new minor version bump.
 
 * Rubocop-blessed Ruby 1.9 syntax for generated DSL documentation
-  [#318](https://github.com/Apipie/apipie-rails/pull/318) [@burnettk][]
+  [#318](https://github.com/MoonRaker/moon_raker-rails/pull/318) [@burnettk][]
 * load API paths from routes.rb
-  [#187](https://github.com/Apipie/apipie-rails/pull/187) [@mtparet][] [@iNecas][]
+  [#187](https://github.com/MoonRaker/moon_raker-rails/pull/187) [@mtparet][] [@iNecas][]
 * ability to use before_filter instead of overriding the action method
   for validation
-  [#306](https://github.com/Apipie/apipie-rails/pull/306) [@dprice-fiksu][]
+  [#306](https://github.com/MoonRaker/moon_raker-rails/pull/306) [@dprice-fiksu][]
 * support multi-part data when recording from tests
-  [#310](https://github.com/Apipie/apipie-rails/pull/310) [@bradrf][]
+  [#310](https://github.com/MoonRaker/moon_raker-rails/pull/310) [@bradrf][]
 * validate_keys option to raise exception when passing undocumented option
-  [#122](https://github.com/Apipie/apipie-rails/pull/122) [@dfharmon][]
+  [#122](https://github.com/MoonRaker/moon_raker-rails/pull/122) [@dfharmon][]
 * handle static page generation when the doc_base_url has multiple folders
-  [#300](https://github.com/Apipie/apipie-rails/pull/300) [@ryanische][]
+  [#300](https://github.com/MoonRaker/moon_raker-rails/pull/300) [@ryanische][]
 * add ability to markup validator description
-  [#282](https://github.com/Apipie/apipie-rails/pull/282) [@exAspArk][]
+  [#282](https://github.com/MoonRaker/moon_raker-rails/pull/282) [@exAspArk][]
 * don't specify protocol in Disqus script tag src
-  [#285](https://github.com/Apipie/apipie-rails/pull/285) [@chrise86][]
+  [#285](https://github.com/MoonRaker/moon_raker-rails/pull/285) [@chrise86][]
 * fix BooleanValidator to set expected_type as boolean
-  [#286](https://github.com/Apipie/apipie-rails/pull/286) [@dustin-rh][]
+  [#286](https://github.com/MoonRaker/moon_raker-rails/pull/286) [@dustin-rh][]
 
 
 v0.2.6
 ------
 
 * better handling on cases where resource/method is not found when cache is turned off
-  [#284](https://github.com/Apipie/apipie-rails/pull/284) [@iNecas][]
+  [#284](https://github.com/MoonRaker/moon_raker-rails/pull/284) [@iNecas][]
 * fix disqus integration
-  [#281](https://github.com/Apipie/apipie-rails/pull/281) [@RajRoR][]
+  [#281](https://github.com/MoonRaker/moon_raker-rails/pull/281) [@RajRoR][]
 
 v0.2.5
 ------
 
 * Name substitution for referenced param_group defined in a concern
-  [#280](https://github.com/Apipie/apipie-rails/pull/280) [@tstrachota][]
+  [#280](https://github.com/MoonRaker/moon_raker-rails/pull/280) [@tstrachota][]
 * expected_type 'array' for ArrayValidator
-  [#276](https://github.com/Apipie/apipie-rails/pull/276) [@dustint-rh][]
+  [#276](https://github.com/MoonRaker/moon_raker-rails/pull/276) [@dustint-rh][]
 
 THE FURTHER SUPPORT FOR RUBY 1.8.7 WILL NOT BE ENSURED IN THE MASTER
 AND THE `>= 0.3.0` RELAEASES. We discourage anyone to keep using ruby
@@ -129,39 +129,39 @@ v0.2.4
 ------
 
 * fix ruby 1.8.7 compatibility
-  [#272](https://github.com/Apipie/apipie-rails/pull/272) [@domcleal][]
+  [#272](https://github.com/MoonRaker/moon_raker-rails/pull/272) [@domcleal][]
 
 v0.2.3
 ------
 
 * add an option to flag an api route as deprecated
-  [#268](https://github.com/Apipie/apipie-rails/pull/268) [@komidore64][]
-* add ability to pass additional options to apipie route
-  [#269](https://github.com/Apipie/apipie-rails/pull/269) [@exAspArk][]
+  [#268](https://github.com/MoonRaker/moon_raker-rails/pull/268) [@komidore64][]
+* add ability to pass additional options to moon_raker route
+  [#269](https://github.com/MoonRaker/moon_raker-rails/pull/269) [@exAspArk][]
 * enhanced array validator
-  [#259](https://github.com/Apipie/apipie-rails/pull/259) [@mourad-ifeelgoods][]
+  [#259](https://github.com/MoonRaker/moon_raker-rails/pull/259) [@mourad-ifeelgoods][]
 
 
 v0.2.2
 ------
 
 * prevent rspec 3 from being used. It is not compatible.
-  [#255](https://github.com/Apipie/apipie-rails/pull/255) [@lsylvester][]
+  [#255](https://github.com/MoonRaker/moon_raker-rails/pull/255) [@lsylvester][]
 * fixed extractor root route (handle nil path)
-  [#257](https://github.com/Apipie/apipie-rails/pull/257) [@ctria][]
+  [#257](https://github.com/MoonRaker/moon_raker-rails/pull/257) [@ctria][]
 * reduced rails dependency to development only
-  [#266](https://github.com/Apipie/apipie-rails/pull/266) [@klobuczek][]
-* add more options to apipie:cache to generate only parts of the
+  [#266](https://github.com/MoonRaker/moon_raker-rails/pull/266) [@klobuczek][]
+* add more options to moon_raker:cache to generate only parts of the
   static pages
-  [#262](https://github.com/Apipie/apipie-rails/pull/262) [@mbacovsky][]
+  [#262](https://github.com/MoonRaker/moon_raker-rails/pull/262) [@mbacovsky][]
 
 v0.2.1
 ------
 
 * fix typo in the localization string
-  [#244](https://github.com/Apipie/apipie-rails/pull/244) [@alem0lars][]
+  [#244](https://github.com/MoonRaker/moon_raker-rails/pull/244) [@alem0lars][]
 * fix syntax errors in 404 page
-  [#246](https://github.com/Apipie/apipie-rails/pull/246) [@richardsondx][]
+  [#246](https://github.com/MoonRaker/moon_raker-rails/pull/246) [@richardsondx][]
 
 
 v0.2.0
@@ -169,63 +169,63 @@ v0.2.0
 
 This is not full backward compatible release, as the format of storing
 examples changed from YAML to JSON: the default location is at
-`doc/apipie_examples.json`. The migration should be as easy as
+`doc/moon_raker_examples.json`. The migration should be as easy as
 running:
 
 ```
-rake apipie:convert_examples
+rake moon_raker:convert_examples
 ```
 
 Also please not Rails 3.0 support was deprecated and the compatibility
 wont be tracked anymore in next releases.
 
 * dump examples as json
-  [#125](https://github.com/Apipie/apipie-rails/pull/125) [@johanneswuerbach][]
+  [#125](https://github.com/MoonRaker/moon_raker-rails/pull/125) [@johanneswuerbach][]
 * support for localized API documentation
-  [#232](https://github.com/Apipie/apipie-rails/pull/232) [@mbacovsky][]
+  [#232](https://github.com/MoonRaker/moon_raker-rails/pull/232) [@mbacovsky][]
 * configuration option to always record examples
-  [#239](https://github.com/Apipie/apipie-rails/pull/239) [@arathunku][]
+  [#239](https://github.com/MoonRaker/moon_raker-rails/pull/239) [@arathunku][]
 * deprecate Rails 3.0
-  [#241](https://github.com/Apipie/apipie-rails/pull/241) [@iNecas][]
+  [#241](https://github.com/MoonRaker/moon_raker-rails/pull/241) [@iNecas][]
 
 v0.1.3
 ------
 
 * nested attributes showing in the documentation
-  [#230](https://github.com/Apipie/apipie-rails/pull/230) [@iNecas][]
+  [#230](https://github.com/MoonRaker/moon_raker-rails/pull/230) [@iNecas][]
 
 v0.1.2
 ------
 
 * reloading works correctly with to_prepare blocks in the app
-  [#228](https://github.com/Apipie/apipie-rails/pull/228) [@iNecas][]
+  [#228](https://github.com/MoonRaker/moon_raker-rails/pull/228) [@iNecas][]
 * documentation bootstrapping now respects api_controllers_matcher
-  [#227](https://github.com/Apipie/apipie-rails/pull/227) [@clamoris][]
+  [#227](https://github.com/MoonRaker/moon_raker-rails/pull/227) [@clamoris][]
 
 v0.1.1
 ------
 
-* backward compatibility with Ruby 1.8 [#218](https://github.com/Apipie/apipie-rails/pull/218) [@mbacovsky][]
-* checksum calculation is lazy and respect use_cache config [#220](https://github.com/Apipie/apipie-rails/pull/220) [@mbacovsky][]
-* fix generating the cache in production environment [#223](https://github.com/Apipie/apipie-rails/pull/223) [@iNecas][]
-* fix loading regression with SafeYAML [#224](https://github.com/Apipie/apipie-rails/pull/224) [@iNecas][]
+* backward compatibility with Ruby 1.8 [#218](https://github.com/MoonRaker/moon_raker-rails/pull/218) [@mbacovsky][]
+* checksum calculation is lazy and respect use_cache config [#220](https://github.com/MoonRaker/moon_raker-rails/pull/220) [@mbacovsky][]
+* fix generating the cache in production environment [#223](https://github.com/MoonRaker/moon_raker-rails/pull/223) [@iNecas][]
+* fix loading regression with SafeYAML [#224](https://github.com/MoonRaker/moon_raker-rails/pull/224) [@iNecas][]
 
 v0.1.0
 ------
 
-* middleware for computing Apipie checksum for [dynamic bindings](https://github.com/Apipie/apipie-bindings) [#215](https://github.com/Apipie/apipie-rails/pull/215) [@mbacovsky][]
-* `api_base_url` inherited properly [#214](https://github.com/Apipie/apipie-rails/pull/214) [@mbacovsky][]
-* ability to hide specific parameters [#208](https://github.com/Apipie/apipie-rails/pull/208) [@nathanhoel][]
-* fix for SafeYAML compatibility [#207](https://github.com/Apipie/apipie-rails/pull/207) [@pivotalshiny][]
-* option to show all examples in the documentation [#203](https://github.com/Apipie/apipie-rails/pull/203) [@pivotalshiny][]
-* support for array of hashes validation [#189](https://github.com/Apipie/apipie-rails/pull/189) [@mtparet][]
-* support for saving the values based on documentation into `@api_params` variable [#188](https://github.com/Apipie/apipie-rails/pull/188) [@mtparet][]
-* support for json generated from rake task `rake apipie:static_json` [#186](https://github.com/Apipie/apipie-rails/pull/186) [@mtparet][]
-* fix `undefined method 'has_key?' for nil:NilClass` when validating Hash against non-hash value [#185](https://github.com/Apipie/apipie-rails/pull/185) [@mtparet][]
-* fix NoMethorError when validating Hash against non-hash value  [#183](https://github.com/Apipie/apipie-rails/pull/183) [@nathanhoel][]
-* support for metadata for params [#181](https://github.com/Apipie/apipie-rails/pull/181) [@tstrachota][]
-* fix camelization of class names [#170](https://github.com/Apipie/apipie-rails/pull/170) [@yonpols][]
-* new array class validator [#169](https://github.com/Apipie/apipie-rails/pull/169) [@mkrajewski][]
+* middleware for computing MoonRaker checksum for [dynamic bindings](https://github.com/MoonRaker/moon_raker-bindings) [#215](https://github.com/MoonRaker/moon_raker-rails/pull/215) [@mbacovsky][]
+* `api_base_url` inherited properly [#214](https://github.com/MoonRaker/moon_raker-rails/pull/214) [@mbacovsky][]
+* ability to hide specific parameters [#208](https://github.com/MoonRaker/moon_raker-rails/pull/208) [@nathanhoel][]
+* fix for SafeYAML compatibility [#207](https://github.com/MoonRaker/moon_raker-rails/pull/207) [@pivotalshiny][]
+* option to show all examples in the documentation [#203](https://github.com/MoonRaker/moon_raker-rails/pull/203) [@pivotalshiny][]
+* support for array of hashes validation [#189](https://github.com/MoonRaker/moon_raker-rails/pull/189) [@mtparet][]
+* support for saving the values based on documentation into `@api_params` variable [#188](https://github.com/MoonRaker/moon_raker-rails/pull/188) [@mtparet][]
+* support for json generated from rake task `rake moon_raker:static_json` [#186](https://github.com/MoonRaker/moon_raker-rails/pull/186) [@mtparet][]
+* fix `undefined method 'has_key?' for nil:NilClass` when validating Hash against non-hash value [#185](https://github.com/MoonRaker/moon_raker-rails/pull/185) [@mtparet][]
+* fix NoMethorError when validating Hash against non-hash value  [#183](https://github.com/MoonRaker/moon_raker-rails/pull/183) [@nathanhoel][]
+* support for metadata for params [#181](https://github.com/MoonRaker/moon_raker-rails/pull/181) [@tstrachota][]
+* fix camelization of class names [#170](https://github.com/MoonRaker/moon_raker-rails/pull/170) [@yonpols][]
+* new array class validator [#169](https://github.com/MoonRaker/moon_raker-rails/pull/169) [@mkrajewski][]
 
 v0.0.24
 -------
@@ -262,7 +262,7 @@ v0.0.20
 
 * namespaced resources - prevent collisions when one resource defined
   in more modules
-* ``Apipie::DSL::Concern`` for being able to use the DSL in module
+* ``MoonRaker::DSL::Concern`` for being able to use the DSL in module
   that is included into controllers
 
 v0.0.19

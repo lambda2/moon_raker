@@ -1,8 +1,8 @@
 require "spec_helper"
 
-describe Apipie::Extractor::Recorder::Middleware do
+describe MoonRaker::Extractor::Recorder::Middleware do
   let(:app) { lambda { |env| [200, env, "app"] } }
-  let(:stack) { Apipie::Extractor::Recorder::Middleware.new(app) }
+  let(:stack) { MoonRaker::Extractor::Recorder::Middleware.new(app) }
   let(:request) { Rack::MockRequest.new(stack) }
   let(:response) { request.get('/') }
 
@@ -12,10 +12,10 @@ describe Apipie::Extractor::Recorder::Middleware do
   end
 
   it "analyze request if recording is set" do
-    Apipie.configuration.record = true
-    expect(Apipie::Extractor.call_recorder).to receive(:analyse_env)
-    expect(Apipie::Extractor.call_recorder).to receive(:analyse_response)
-    expect(Apipie::Extractor).to receive(:clean_call_recorder)
+    MoonRaker.configuration.record = true
+    expect(MoonRaker::Extractor.call_recorder).to receive(:analyse_env)
+    expect(MoonRaker::Extractor.call_recorder).to receive(:analyse_response)
+    expect(MoonRaker::Extractor).to receive(:clean_call_recorder)
     response
   end
 
@@ -35,9 +35,9 @@ describe Apipie::Extractor::Recorder::Middleware do
     end
 
     it 'reformats form parts' do
-      Apipie.configuration.record = true
+      MoonRaker.configuration.record = true
       # expect reformat_multipart_data to invoke content_disposition
-      expect(Apipie::Extractor.call_recorder).to receive(:content_disposition)
+      expect(MoonRaker::Extractor.call_recorder).to receive(:content_disposition)
       response
     end
   end

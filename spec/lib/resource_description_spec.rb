@@ -1,13 +1,13 @@
 require "spec_helper"
 
-describe Apipie::ResourceDescription do
+describe MoonRaker::ResourceDescription do
 
-  let(:dsl_data) { ActionController::Base.send(:_apipie_dsl_data_init) }
+  let(:dsl_data) { ActionController::Base.send(:_moon_raker_dsl_data_init) }
 
   describe "metadata" do
 
     it "should return nil when no metadata is provided" do
-      resource = Apipie::ResourceDescription.new(ApplicationController, "dummy", dsl_data)
+      resource = MoonRaker::ResourceDescription.new(ApplicationController, "dummy", dsl_data)
       expect(resource.to_json[:metadata]).to eq(nil)
     end
 
@@ -16,7 +16,7 @@ describe Apipie::ResourceDescription do
         :lenght => 32,
         :weight => '830g'
       }
-      resource = Apipie::ResourceDescription.new(ApplicationController, "dummy", dsl_data.update(:meta => meta))
+      resource = MoonRaker::ResourceDescription.new(ApplicationController, "dummy", dsl_data.update(:meta => meta))
       expect(resource.to_json[:metadata]).to eq(meta)
     end
 
@@ -25,10 +25,10 @@ describe Apipie::ResourceDescription do
   describe "methods descriptions" do
 
     before(:each) do
-      @resource = Apipie::ResourceDescription.new(ApplicationController, "dummy")
-      a = Apipie::MethodDescription.new(:a, @resource, dsl_data)
-      b = Apipie::MethodDescription.new(:b, @resource, dsl_data)
-      c = Apipie::MethodDescription.new(:c, @resource, dsl_data)
+      @resource = MoonRaker::ResourceDescription.new(ApplicationController, "dummy")
+      a = MoonRaker::MethodDescription.new(:a, @resource, dsl_data)
+      b = MoonRaker::MethodDescription.new(:b, @resource, dsl_data)
+      c = MoonRaker::MethodDescription.new(:c, @resource, dsl_data)
       @resource.add_method_description(a)
       @resource.add_method_description(b)
       @resource.add_method_description(c)

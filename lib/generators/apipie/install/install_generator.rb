@@ -1,4 +1,4 @@
-module Apipie
+module MoonRaker
   class InstallGenerator < ::Rails::Generators::Base
     source_root File.expand_path('../templates', __FILE__)
 
@@ -6,7 +6,7 @@ module Apipie
                  aliases: '-r',
                  type: :string,
                  desc: 'What path should be the doc available on',
-                 default: '/apipie')
+                 default: '/moon_raker')
 
     class_option(:api_path,
                  alias: '-a',
@@ -15,11 +15,11 @@ module Apipie
                  default: '/api')
 
     def create_initializer
-      template 'initializer.rb.erb', 'config/initializers/apipie.rb'
+      template 'initializer.rb.erb', 'config/initializers/moon_raker.rb'
     end
 
     def add_route
-      route('apipie')
+      route('moon_raker')
     end
   end
 end

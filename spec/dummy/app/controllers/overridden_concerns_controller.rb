@@ -2,7 +2,7 @@ class OverriddenConcernsController < ApplicationController
 
   resource_description { resource_id 'overridden_concern_resources' }
 
-  apipie_concern_subst(:concern => 'user')
+  moon_raker_concern_subst(:concern => 'user')
   include ::Concerns::SampleController
 
   def_param_group :concern do

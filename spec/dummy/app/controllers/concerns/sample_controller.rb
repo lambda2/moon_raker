@@ -1,6 +1,6 @@
 module Concerns
   module SampleController
-    extend Apipie::DSL::Concern
+    extend MoonRaker::DSL::Concern
 
     api!
     def index

@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-module Apipie::Validator
+module MoonRaker::Validator
   describe ArrayValidator do
 
     let(:param_desc) { double(:param_desc) }

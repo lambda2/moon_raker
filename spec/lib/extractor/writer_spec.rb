@@ -1,11 +1,11 @@
 require "spec_helper"
 
-describe Apipie::Extractor::Writer do
+describe MoonRaker::Extractor::Writer do
 
   let(:collector) { double "collector" }
-  let(:writer_class) { Apipie::Extractor::Writer }
+  let(:writer_class) { MoonRaker::Extractor::Writer }
   let(:writer) { writer_class.new(collector) }
-  let(:test_examples_file) { File.join(Rails.root, "doc", "apipie_examples_test.json") }
+  let(:test_examples_file) { File.join(Rails.root, "doc", "moon_raker_examples_test.json") }
   let(:records) { {
     "concern_resources#show" =>
       [{
@@ -59,8 +59,8 @@ describe Apipie::Extractor::Writer do
 
   describe "with doc_path overriden in configuration" do
     it "should use the doc_path specified in configuration" do
-      Apipie.configuration.doc_path = "user_specified_doc_path"
-      expect(writer_class.examples_file).to eql(File.join(Rails.root, "user_specified_doc_path", "apipie_examples.json"))
+      MoonRaker.configuration.doc_path = "user_specified_doc_path"
+      expect(writer_class.examples_file).to eql(File.join(Rails.root, "user_specified_doc_path", "moon_raker_examples.json"))
     end
   end
 

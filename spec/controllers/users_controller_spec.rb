@@ -20,11 +20,11 @@ end
 
 describe UsersController do
 
-  let(:dsl_data) { ActionController::Base.send(:_apipie_dsl_data_init) }
+  let(:dsl_data) { ActionController::Base.send(:_moon_raker_dsl_data_init) }
 
   describe "resource description" do
     subject do
-      Apipie.get_resource_description(UsersController, Apipie.configuration.default_version)
+      MoonRaker.get_resource_description(UsersController, MoonRaker.configuration.default_version)
     end
 
     it "should contain all resource methods" do
@@ -60,9 +60,9 @@ describe UsersController do
 
     context "validations are disabled" do
       before do
-        Apipie.configuration.validate = false
-        Apipie.configuration.validate_value = true
-        Apipie.configuration.validate_presence = true
+        MoonRaker.configuration.validate = false
+        MoonRaker.configuration.validate_value = true
+        MoonRaker.configuration.validate_presence = true
       end
 
       it "should reply to valid request" do
@@ -86,9 +86,9 @@ describe UsersController do
 
         context "only presence validations are enabled" do
           before do
-            Apipie.configuration.validate_value = false
-            Apipie.configuration.validate_presence = true
-            Apipie.configuration.validate_key = false
+            MoonRaker.configuration.validate_value = false
+            MoonRaker.configuration.validate_presence = true
+            MoonRaker.configuration.validate_key = false
           end
 
           it "should reply to valid request" do
@@ -97,7 +97,7 @@ describe UsersController do
           end
 
           it "should fail if required parameter is missing" do
-            expect { get :show, :id => 5 }.to raise_error(Apipie::ParamMissing, /session_parameter_is_required/)
+            expect { get :show, :id => 5 }.to raise_error(MoonRaker::ParamMissing, /session_parameter_is_required/)
           end
 
           it "should pass if required parameter has wrong type" do
@@ -109,9 +109,9 @@ describe UsersController do
 
         context "key validations are enabled" do
           before do
-            Apipie.configuration.validate_value = false
-            Apipie.configuration.validate_presence = true
-            Apipie.configuration.validate_key = true
+            MoonRaker.configuration.validate_value = false
+            MoonRaker.configuration.validate_presence = true
+            MoonRaker.configuration.validate_key = true
           end
 
           it "should reply to valid request" do
@@ -120,15 +120,15 @@ describe UsersController do
           end
 
           it "should fail if extra parameter is passed in" do
-            expect { get :show, :id => 5, :session => "secret_hash", :badparam => 'badfoo' }.to raise_error(Apipie::UnknownParam, /\bbadparam\b/)
+            expect { get :show, :id => 5, :session => "secret_hash", :badparam => 'badfoo' }.to raise_error(MoonRaker::UnknownParam, /\bbadparam\b/)
           end
         end
 
         context "presence and value validations are enabled" do
           before do
-            Apipie.configuration.validate_value = true
-            Apipie.configuration.validate_presence = true
-            Apipie.configuration.validate_key = false
+            MoonRaker.configuration.validate_value = true
+            MoonRaker.configuration.validate_presence = true
+            MoonRaker.configuration.validate_key = false
           end
 
           it "should reply to valid request" do
@@ -139,12 +139,12 @@ describe UsersController do
           it "should work with nil value for a required hash param" do
             expect {
               get :show, :id => '5', :session => "secret_hash", :hash_param => {:dummy_hash => nil}
-            }.to raise_error(Apipie::ParamInvalid, /dummy_hash/)
+            }.to raise_error(MoonRaker::ParamInvalid, /dummy_hash/)
             assert_response :success
           end
 
           it "should fail if required parameter is missing" do
-            expect { get :show, :id => 5 }.to raise_error(Apipie::ParamMissing, /session_parameter_is_required/)
+            expect { get :show, :id => 5 }.to raise_error(MoonRaker::ParamMissing, /session_parameter_is_required/)
           end
 
           it "should work with custom Type validator" do
@@ -152,7 +152,7 @@ describe UsersController do
               get :show,
                   :id => "not a number",
                   :session => "secret_hash"
-            }.to raise_error(Apipie::ParamError, /id/) # old-style error rather than ParamInvalid
+            }.to raise_error(MoonRaker::ParamError, /id/) # old-style error rather than ParamInvalid
           end
 
           it "should work with Regexp validator" do
@@ -167,7 +167,7 @@ describe UsersController do
                   :id => 5,
                   :session => "secret_hash",
                   :regexp_param => "ten years"
-            }.to raise_error(Apipie::ParamInvalid, /regexp_param/)
+            }.to raise_error(MoonRaker::ParamInvalid, /regexp_param/)
           end
 
           it "should work with Array validator" do
@@ -185,14 +185,14 @@ describe UsersController do
                   :id => 5,
                   :session => "secret_hash",
                   :array_param => "blabla"
-            }.to raise_error(Apipie::ParamInvalid, /array_param/)
+            }.to raise_error(MoonRaker::ParamInvalid, /array_param/)
 
             expect {
               get :show,
                   :id => 5,
                   :session => "secret_hash",
                   :array_param => 3
-            }.to raise_error(Apipie::ParamInvalid, /array_param/)
+            }.to raise_error(MoonRaker::ParamInvalid, /array_param/)
           end
 
           it "should work with Proc validator" do
@@ -201,7 +201,7 @@ describe UsersController do
                   :id => 5,
                   :session => "secret_hash",
                   :proc_param => "asdgsag"
-            }.to raise_error(Apipie::ParamInvalid, /proc_param/)
+            }.to raise_error(MoonRaker::ParamInvalid, /proc_param/)
 
             get :show,
                 :id => 5,
@@ -214,10 +214,10 @@ describe UsersController do
             post :create, :user => { :name => "root", :pass => "12345", :membership => "standard" }
             assert_response :success
 
-            a = Apipie[UsersController, :create]
+            a = MoonRaker[UsersController, :create]
             param = a.params_ordered.select {|p| p.name == :user }
             expect(param.count).to eq(1)
-            expect(param.first.validator.class).to eq(Apipie::Validator::HashValidator)
+            expect(param.first.validator.class).to eq(MoonRaker::Validator::HashValidator)
             hash_params = param.first.validator.params_ordered
             expect(hash_params.count).to eq(4)
             hash_params[0].name == :name
@@ -226,22 +226,22 @@ describe UsersController do
 
             expect {
               post :create, :user => { :name => "root", :pass => "12345", :membership => "____" }
-            }.to raise_error(Apipie::ParamInvalid, /membership/)
+            }.to raise_error(MoonRaker::ParamInvalid, /membership/)
 
             expect {
               post :create, :user => { :name => "root" }
-            }.to raise_error(Apipie::ParamMissing, /pass/)
+            }.to raise_error(MoonRaker::ParamMissing, /pass/)
 
             expect {
               post :create, :user => "a string is not a hash"
-            }.to raise_error(Apipie::ParamInvalid, /user/)
+            }.to raise_error(MoonRaker::ParamInvalid, /user/)
 
             post :create, :user => { :name => "root", :pass => "pwd" }
             assert_response :success
           end
 
           it "should support Hash validator without specifying keys" do
-            params = Apipie[UsersController, :create].to_json[:params]
+            params = MoonRaker[UsersController, :create].to_json[:params]
             expect(params).to include(:name => "facts",
                                   :full_name => "facts",
                                   :validator => "Must be Hash",
@@ -308,7 +308,7 @@ describe UsersController do
                         }
                       ]
                     }
-                }.to raise_error(Apipie::ParamInvalid)
+                }.to raise_error(MoonRaker::ParamInvalid)
               end
             end
             it "should work with empty array" do
@@ -332,7 +332,7 @@ describe UsersController do
 
       context "using configuration.validate = true" do
         before :all do
-          Apipie.configuration.validate = true
+          MoonRaker.configuration.validate = true
           reload_controllers
         end
 
@@ -341,7 +341,7 @@ describe UsersController do
 
       context "using configuration.validate = :implicitly" do
         before :all do
-          Apipie.configuration.validate = :implicitly
+          MoonRaker.configuration.validate = :implicitly
           reload_controllers
         end
 
@@ -350,7 +350,7 @@ describe UsersController do
 
       context "using configuration.validate = :explicitly" do
         before :all do
-          Apipie.configuration.validate = :explicitly
+          MoonRaker.configuration.validate = :explicitly
           reload_controllers
         end
 
@@ -363,7 +363,7 @@ describe UsersController do
   describe "method description" do
 
     it "should contain basic info about method" do
-      a = Apipie[UsersController, :create]
+      a = MoonRaker[UsersController, :create]
       expect(a.apis.count).to eq(1)
       expect(a.formats).to eq(['json'])
       api = a.apis.first
@@ -371,8 +371,8 @@ describe UsersController do
       expect(api.path).to eq("/users")
       expect(api.http_method).to eq("POST")
 
-      b = Apipie.get_method_description(UsersController, :show)
-      expect(b).to eq(Apipie[UsersController, :show])
+      b = MoonRaker.get_method_description(UsersController, :show)
+      expect(b).to eq(MoonRaker[UsersController, :show])
       expect(b.method).to eq('show')
       expect(b.resource._id).to eq('users')
 
@@ -387,7 +387,7 @@ describe UsersController do
 
     context "Usign routes.rb" do
       it "should contain basic info about method" do
-        a = Apipie[UsersController, :create_route]
+        a = MoonRaker[UsersController, :create_route]
         expect(a.apis.count).to eq(1)
         expect(a.formats).to eq(['json'])
         api = a.apis.first
@@ -402,26 +402,26 @@ describe UsersController do
 
       context "the key is valid" do
         it "should contain reference to another method" do
-          api = Apipie[UsersController, :see_another]
+          api = MoonRaker[UsersController, :see_another]
           expect(api.show).to be false
           see = api.see.first
-          expect(see.see_url).to eql Apipie[UsersController, :create].doc_url
+          expect(see.see_url).to eql MoonRaker[UsersController, :create].doc_url
           expect(see.link).to eql 'development#users#create'
           expect(see.description).to eql 'development#users#create'
 
           see_with_desc = api.see.last
-          expect(see_with_desc.see_url).to eql Apipie[UsersController, :index].doc_url
+          expect(see_with_desc.see_url).to eql MoonRaker[UsersController, :index].doc_url
           expect(see_with_desc.link).to eql 'development#users#index'
           expect(see_with_desc.description).to eql 'very interesting method reference'
 
-          expect(Apipie['development#users#see_another']).to eql Apipie[UsersController, :see_another]
+          expect(MoonRaker['development#users#see_another']).to eql MoonRaker[UsersController, :see_another]
         end
       end
 
       context "the key is not valid" do
         it "should raise exception" do
-          api = Apipie[UsersController, :see_another]
-          api.instance_variable_set :@see, [Apipie::SeeDescription.new(['doesnot#exist'])]
+          api = MoonRaker[UsersController, :see_another]
+          api.instance_variable_set :@see, [MoonRaker::SeeDescription.new(['doesnot#exist'])]
           expect {
             api.see.first.see_url
           }.to raise_error(ArgumentError, /does not exist/)
@@ -431,7 +431,7 @@ describe UsersController do
     end
 
     it "should contain possible errors description" do
-      a = Apipie.get_method_description(UsersController, :show)
+      a = MoonRaker.get_method_description(UsersController, :show)
 
       expect(a.errors[0].code).to eq(500)
       expect(a.errors[0].description).to include("crashed")
@@ -442,7 +442,7 @@ describe UsersController do
     end
 
     it "should contain all params description" do
-      a = Apipie.get_method_description(UsersController, :show)
+      a = MoonRaker.get_method_description(UsersController, :show)
       expect(a.params.count).to eq(12)
       expect(a.instance_variable_get('@params_ordered').count).to eq(10)
     end
@@ -470,7 +470,7 @@ describe UsersController do
         end
 
         it 'contains all headers description in method doc' do
-          headers = Apipie.get_method_description(UsersController, :action_with_headers).headers
+          headers = MoonRaker.get_method_description(UsersController, :action_with_headers).headers
           expect(headers).to be_an(Array)
 
           compare_hashes headers[0], expected_required_header
@@ -490,7 +490,7 @@ describe UsersController do
         end
 
         it 'contains all headers description in resource doc' do
-          headers = Apipie.get_resource_description(UsersController)._headers
+          headers = MoonRaker.get_resource_description(UsersController)._headers
           expect(headers).to be_an(Array)
 
           compare_hashes headers[0], expected_resource_header
@@ -499,8 +499,8 @@ describe UsersController do
     end
 
     it "should contain all api method description" do
-      method_description = Apipie[UsersController, :two_urls]
-      expect(method_description.class).to be(Apipie::MethodDescription)
+      method_description = MoonRaker[UsersController, :two_urls]
+      expect(method_description.class).to be(MoonRaker::MethodDescription)
       expect(method_description.apis.count).to eq(2)
       a1, a2 = method_description.apis
 
@@ -514,12 +514,12 @@ describe UsersController do
     end
 
     it "should be described by valid json" do
-      json = Apipie[UsersController, :two_urls].to_json
+      json = MoonRaker[UsersController, :two_urls].to_json
       expected_hash = {
         :errors => [{:code=>404, :description=>"Missing", :metadata => {:some => "metadata"}},
                     {:code=>500, :description=>"Server crashed for some <%= reason %>"}],
         :examples => [],
-        :doc_url => "#{Apipie.configuration.doc_base_url}/development/users/two_urls",
+        :doc_url => "#{MoonRaker.configuration.doc_base_url}/development/users/two_urls",
         :formats=>["json"],
         :full_description => '',
         :params => [{:full_name=>"oauth",
@@ -578,11 +578,11 @@ describe UsersController do
           {
             :http_method => 'GET',
             :short_description => 'Get company users',
-            :api_url => "#{Apipie.api_base_url}/company_users"
+            :api_url => "#{MoonRaker.api_base_url}/company_users"
           },{
             :http_method => 'GET',
             :short_description => 'Get users working in given company',
-            :api_url =>"#{Apipie.api_base_url}/company/:id/users"
+            :api_url =>"#{MoonRaker.api_base_url}/company/:id/users"
           }
         ]
       }
@@ -595,7 +595,7 @@ describe UsersController do
   describe "examples" do
 
     it "should be able to load examples from yml file" do
-      expect(Apipie.get_method_description(UsersController, :show).examples).to eq [<<EOS1, <<EOS2].map(&:chomp)
+      expect(MoonRaker.get_method_description(UsersController, :show).examples).to eq [<<EOS1, <<EOS2].map(&:chomp)
 GET /users/14?verbose=true
 200
 {
@@ -609,7 +609,7 @@ EOS2
 
     describe "document" do
       it "should be able to load document from markup file" do
-        expect(Apipie.get_method_description(UsersController, :desc_from_file).full_description).to include("description from document")
+        expect(MoonRaker.get_method_description(UsersController, :desc_from_file).full_description).to include("description from document")
       end
     end
   end
@@ -617,38 +617,38 @@ EOS2
   describe "param description" do
 
     it "should contain all specified information" do
-      a = Apipie.get_method_description(UsersController, :show)
+      a = MoonRaker.get_method_description(UsersController, :show)
 
       param = a.params[:session]
       expect(param.required).to eq(true)
       expect(param.desc).to eq("\n<p>user is logged in</p>\n")
-      expect(param.validator.class).to be(Apipie::Validator::TypeValidator)
+      expect(param.validator.class).to be(MoonRaker::Validator::TypeValidator)
       expect(param.validator.instance_variable_get("@type")).to eq(String)
 
       param = a.params[:id]
       expect(param.required).to eq(true)
       expect(param.desc).to eq("\n<p>user id</p>\n")
-      expect(param.validator.class).to be(Apipie::Validator::IntegerValidator)
+      expect(param.validator.class).to be(MoonRaker::Validator::IntegerValidator)
       expect(param.validator.instance_variable_get("@type")).to eq(Integer)
 
       param = a.params[:regexp_param]
       expect(param.desc).to eq("\n<p>regexp param</p>\n")
       expect(param.required).to eq(false)
-      expect(param.validator.class).to be(Apipie::Validator::RegexpValidator)
+      expect(param.validator.class).to be(MoonRaker::Validator::RegexpValidator)
       expect(param.validator.instance_variable_get("@regexp")).to eq(/^[0-9]* years/)
 
       param = a.params[:array_param]
       expect(param.desc).to eq("\n<p>array validator</p>\n")
-      expect(param.validator.class).to be(Apipie::Validator::EnumValidator)
+      expect(param.validator.class).to be(MoonRaker::Validator::EnumValidator)
       expect(param.validator.instance_variable_get("@array")).to eq(["100", "one", "two", "1", "2"])
 
       param = a.params[:proc_param]
       expect(param.desc).to eq("\n<p>proc validator</p>\n")
-      expect(param.validator.class).to be(Apipie::Validator::ProcValidator)
+      expect(param.validator.class).to be(MoonRaker::Validator::ProcValidator)
 
       param = a.params[:briefer_dsl]
       expect(param.desc).to eq("\n<p>You dont need :desc =&gt; from now</p>\n")
-      expect(param.validator.class).to be(Apipie::Validator::TypeValidator)
+      expect(param.validator.class).to be(MoonRaker::Validator::TypeValidator)
     end
 
   end
@@ -657,40 +657,40 @@ EOS2
     class IgnoredController < ApplicationController; end
 
     after do
-      Apipie.configuration.ignored = %w[]
+      MoonRaker.configuration.ignored = %w[]
     end
 
     describe "ignored action" do
       before do
-        Apipie.configuration.ignored = %w[UsersController#ignore]
+        MoonRaker.configuration.ignored = %w[UsersController#ignore]
       end
 
       it "skips the listed  actions from the documentation" do
-        Apipie.define_method_description(UsersController, :ignore, dsl_data)
-        expect(Apipie.get_method_description(UsersController, :ignore)).to be_nil
+        MoonRaker.define_method_description(UsersController, :ignore, dsl_data)
+        expect(MoonRaker.get_method_description(UsersController, :ignore)).to be_nil
 
-        Apipie.define_method_description(UsersController, :dont_ignore, dsl_data)
-        expect(Apipie.get_method_description(UsersController, :dont_ignore)).not_to be_nil
+        MoonRaker.define_method_description(UsersController, :dont_ignore, dsl_data)
+        expect(MoonRaker.get_method_description(UsersController, :dont_ignore)).not_to be_nil
       end
     end
 
     describe "ignored controller" do
       before do
-        Apipie.configuration.ignored = %w[IgnoredController]
+        MoonRaker.configuration.ignored = %w[IgnoredController]
       end
 
       it "skips the listed controller from the documentation" do
-        Apipie.define_method_description(IgnoredController, :ignore, dsl_data)
-        expect(Apipie.get_method_description(IgnoredController, :ignore)).to be_nil
-        Apipie.define_method_description(IgnoredController, :ignore, dsl_data)
-        expect(Apipie.get_method_description(IgnoredController, :ignore)).to be_nil
+        MoonRaker.define_method_description(IgnoredController, :ignore, dsl_data)
+        expect(MoonRaker.get_method_description(IgnoredController, :ignore)).to be_nil
+        MoonRaker.define_method_description(IgnoredController, :ignore, dsl_data)
+        expect(MoonRaker.get_method_description(IgnoredController, :ignore)).to be_nil
       end
     end
   end
 
   describe "Parameter processing / extraction" do
     before do
-      Apipie.configuration.process_params = true
+      MoonRaker.configuration.process_params = true
     end
 
     it "process correctly the parameters" do
@@ -706,7 +706,7 @@ EOS2
     end
 
     after do
-      Apipie.configuration.process_params = false
+      MoonRaker.configuration.process_params = false
     end
   end
 end

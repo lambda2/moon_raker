@@ -1,4 +1,4 @@
-Apipie.configure do |config|
+MoonRaker.configure do |config|
   config.app_name = "Test app"
   config.copyright = "&copy; 2012 Pavel Pokorny"
 
@@ -18,10 +18,10 @@ Apipie.configure do |config|
 
   # set to true to turn on/off the cache. To generate the cache use:
   #
-  #     rake apipie:cache
+  #     rake moon_raker:cache
   #
   config.use_cache = Rails.env.production?
-  # config.cache_dir = File.join(Rails.root, "public", "apipie-cache") # optional
+  # config.cache_dir = File.join(Rails.root, "public", "moon_raker-cache") # optional
 
   # set to enable/disable reloading controllers (and the documentation with it),
   # by default enabled in development
@@ -34,9 +34,9 @@ Apipie.configure do |config|
   config.api_routes = Rails.application.routes
 
   # config.markup = choose one of:
-  #   Apipie::Markup::RDoc.new [default]
-  #   Apipie::Markup::Markdown.new
-  #   Apipie::Markup::Textile.new
+  #   MoonRaker::Markup::RDoc.new [default]
+  #   MoonRaker::Markup::Markdown.new
+  #   MoonRaker::Markup::Textile.new
   # or provide another class with to_html(text) instance method
   # to disable markup, use
   # config.markup = nil
@@ -60,12 +60,12 @@ Apipie.configure do |config|
   config.required_by_default = false
 
   # use custom layout
-  # use Apipie.include_stylesheets and Apipie.include_javascripts
-  # to include apipies css and js
+  # use MoonRaker.include_stylesheets and MoonRaker.include_javascripts
+  # to include moon_rakers css and js
   config.layout = "application"
 
   # specify disqus site shortname to show discusion on each page
-  # to show it in custom layout, use `render 'disqus' if Apipie.configuration.use_disqus?`
+  # to show it in custom layout, use `render 'disqus' if MoonRaker.configuration.use_disqus?`
   # config.disqus_shortname = 'paveltest'
 
   # Hide '.html' extensions.  Note that '.html' extensions are forced
@@ -74,7 +74,7 @@ Apipie.configure do |config|
 end
 
 # integer validator
-class Apipie::Validator::IntegerValidator < Apipie::Validator::BaseValidator
+class MoonRaker::Validator::IntegerValidator < MoonRaker::Validator::BaseValidator
 
   def initialize(param_description, argument)
     super(param_description)

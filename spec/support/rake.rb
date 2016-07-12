@@ -5,7 +5,7 @@ shared_context "rake" do
   let(:rake)      { Rake::Application.new }
   let(:task_name) { rake.parse_task_string(self.class.description).first }
   let(:task_args) { rake.parse_task_string(self.class.description).last }
-  let(:task_path) { "lib/tasks/apipie" }
+  let(:task_path) { "lib/tasks/moon_raker" }
   subject         { rake[task_name] }
 
   def loaded_files_excluding_current_rake_file

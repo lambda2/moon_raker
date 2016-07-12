@@ -2,19 +2,19 @@
  API Documentation Tool
 ========================
 
-.. image:: https://travis-ci.org/Apipie/apipie-rails.png?branch=master
-    :target: https://travis-ci.org/Apipie/apipie-rails
-.. image:: https://codeclimate.com/github/Apipie/apipie-rails.png
-    :target: https://codeclimate.com/github/Apipie/apipie-rails
-.. image:: https://badges.gitter.im/Apipie/apipie-rails.svg
-   :alt: Join the chat at https://gitter.im/Apipie/apipie-rails
-   :target: https://gitter.im/Apipie/apipie-rails?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge
-.. image:: https://img.shields.io/gem/v/apipie-rails.svg
+.. image:: https://travis-ci.org/MoonRaker/moon_raker-rails.png?branch=master
+    :target: https://travis-ci.org/MoonRaker/moon_raker-rails
+.. image:: https://codeclimate.com/github/MoonRaker/moon_raker-rails.png
+    :target: https://codeclimate.com/github/MoonRaker/moon_raker-rails
+.. image:: https://badges.gitter.im/MoonRaker/moon_raker-rails.svg
+   :alt: Join the chat at https://gitter.im/MoonRaker/moon_raker-rails
+   :target: https://gitter.im/MoonRaker/moon_raker-rails?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge
+.. image:: https://img.shields.io/gem/v/moon_raker-rails.svg
    :alt: Latest release
-   :target: https://rubygems.org/gems/apipie-rails
+   :target: https://rubygems.org/gems/moon_raker-rails
 
-Apipie-rails is a DSL and Rails engine for documenting your RESTful
-API. Instead of traditional use of ``#comments``, Apipie lets you
+MoonRaker-rails is a DSL and Rails engine for documenting your RESTful
+API. Instead of traditional use of ``#comments``, MoonRaker lets you
 describe the code, through the code. This brings advantages like:
 
 * No need to learn yet another syntax, you already know Ruby, right?
@@ -24,20 +24,20 @@ describe the code, through the code. This brings advantages like:
   routes etc.)
 
 The documentation is available from within your app (by default under the
-``/apipie`` path.) In development mode, you can see the changes as you
+``/moon_raker`` path.) In development mode, you can see the changes as you
 go. It's markup language agnostic, and even provides an API for reusing
 the documentation data in JSON.
 
 Getting started
 ---------------
 
-The easiest way to get Apipie up and running with your app is:
+The easiest way to get MoonRaker up and running with your app is:
 
 .. code:: sh
 
-   echo "gem 'apipie-rails'" >> Gemfile
+   echo "gem 'moon_raker-rails'" >> Gemfile
    bundle install
-   rails g apipie:install
+   rails g moon_raker:install
 
 Now you can start documenting your resources and actions (see
 `DSL Reference`_ for more info):
@@ -52,18 +52,18 @@ Now you can start documenting your resources and actions (see
 
 
 Run your application and see the result at
-``http://localhost:3000/apipie``. For further processing, you can
-use ``http://localhost:3000/apipie.json``.
+``http://localhost:3000/moon_raker``. For further processing, you can
+use ``http://localhost:3000/moon_raker.json``.
 
 For a more comprehensive getting started guide, see
-`this demo <https://github.com/iNecas/apipie-demo>`_, which includes
+`this demo <https://github.com/iNecas/moon_raker-demo>`_, which includes
 features such as generating documentation from tests, recording examples etc.
 
 Screenshots
 -----------
 
-.. image:: https://github.com/Apipie/apipie-rails/blob/master/images/screenshot-1.png
-.. image:: https://github.com/Apipie/apipie-rails/blob/master/images/screenshot-2.png
+.. image:: https://github.com/MoonRaker/moon_raker-rails/blob/master/images/screenshot-1.png
+.. image:: https://github.com/MoonRaker/moon_raker-rails/blob/master/images/screenshot-2.png
 
 Authors
 -------
@@ -73,12 +73,12 @@ Authors
 Contributors
 ------------
 
-See `Contributors page  <https://github.com/Apipie/apipie-rails/graphs/contributors>`_. Special thanks to all of them!
+See `Contributors page  <https://github.com/MoonRaker/moon_raker-rails/graphs/contributors>`_. Special thanks to all of them!
 
 License
 -------
 
-Apipie-rails is released under the `MIT License <http://opensource.org/licenses/MIT>`_
+MoonRaker-rails is released under the `MIT License <http://opensource.org/licenses/MIT>`_
 
 ===============
  Documentation
@@ -103,7 +103,7 @@ class.
 The following keywords are available (all are optional):
 
 resource_id
-  How the resource will be referenced in Apipie (paths, ``see`` command etc.); by default `controller_name.downcase` is used.
+  How the resource will be referenced in MoonRaker (paths, ``see`` command etc.); by default `controller_name.downcase` is used.
 
 name
   Human readable name of resource. By default ``class.name.humanize`` is used.
@@ -425,13 +425,13 @@ Concerns
 --------
 
 Sometimes, the actions are not defined in the controller class
-directly but included from a module instead. You can load the Apipie
-DSL into the module by extending it with ``Apipie::DSL::Concern``.
+directly but included from a module instead. You can load the MoonRaker
+DSL into the module by extending it with ``MoonRaker::DSL::Concern``.
 
 The module can be used in more controllers. Therefore there is a way to
 substitute parts of the documentation in the module with controller
 specific values. These substitutions can be stated explicitly with
-``apipie_concern_subst(:key => "value")`` (needs to be called before
+``moon_raker_concern_subst(:key => "value")`` (needs to be called before
 the module is included to take effect). The substitutions are
 performed in the paths and descriptions of APIs and names and descriptions
 of params.
@@ -443,7 +443,7 @@ There are some default substitutions available:
   ``Api::UsersController``. Only if not using the ``api!`` keyword.
 
 :resource_id
-  Apipie identifier of the resource, e.g. ``users`` for
+  MoonRaker identifier of the resource, e.g. ``users`` for
   ``Api::UsersController`` or set by ``resource_id``
 
 Example
@@ -453,7 +453,7 @@ Example
 
    # users_module.rb
    module UsersModule
-     extend Apipie::DSL::Concern
+     extend MoonRaker::DSL::Concern
 
      api :GET, '/:controller_path', 'List :resource_id'
      def index
@@ -485,7 +485,7 @@ Example
 
      resource_description { resource_id 'customers' }
 
-     apipie_concern_subst(:custom_subst => 'custom', :resource => 'customer')
+     moon_raker_concern_subst(:custom_subst => 'custom', :resource => 'customer')
      include UsersModule
 
      # the following paths are documented
@@ -505,7 +505,7 @@ Example
  Configuration Reference
 =========================
 
-Create a configuration file in e.g. ``/config/initializers/apipie.rb``.
+Create a configuration file in e.g. ``/config/initializers/moon_raker.rb``.
 You can set the application name, footer text, API and documentation base URL
 and turn off validations. You can also choose your favorite markup language
 for full descriptions.
@@ -528,9 +528,9 @@ default_version
 validate
   Parameters validation is turned off when set to false. When set to
   ``:explicitly``, you must invoke parameter validation yourself by calling
-  controller method ``apipie_validations`` (typically in a before_filter).
+  controller method ``moon_raker_validations`` (typically in a before_filter).
   When set to ``:implicitly`` (or just true), your controller's action
-  methods are wrapped with generated methods which call ``apipie_validations``,
+  methods are wrapped with generated methods which call ``moon_raker_validations``,
   and then call the action method. (``:implicitly`` by default)
 
 validate_value
@@ -563,21 +563,21 @@ api_routes
 routes_formatter
   An object providing the translation from the Rails routes to the
   format usable in the documentation when using the `api!` keyword. By
-  default, the ``Apipie::RoutesFormatter`` is used.
+  default, the ``MoonRaker::RoutesFormatter`` is used.
 
 markup
   You can choose markup language for descriptions of your application,
   resources and methods. RDoc is the default but you can choose from
-  Apipie::Markup::Markdown.new or Apipie::Markup::Textile.new.
+  MoonRaker::Markup::Markdown.new or MoonRaker::Markup::Textile.new.
   In order to use Markdown you need Maruku gem and for Textile you
   need RedCloth. Add those to your gemfile and run bundle if you
   want to use them. You can also add any other markup language
   processor.
 
 layout
-  Name of a layout template to use instead of Apipie's layout. You can use
-  Apipie.include_stylesheets and Apipie.include_javascripts helpers to include
-  Apipie's stylesheets and javascripts.
+  Name of a layout template to use instead of MoonRaker's layout. You can use
+  MoonRaker.include_stylesheets and MoonRaker.include_javascripts helpers to include
+  MoonRaker's stylesheets and javascripts.
 
 ignored
   An array of controller names (strings) (might include actions as well)
@@ -624,13 +624,13 @@ Example:
 
 .. code:: ruby
 
-   Apipie.configure do |config|
+   MoonRaker.configure do |config|
      config.app_name = "Test app"
      config.copyright = "&copy; 2012 Pavel Pokorny"
      config.doc_base_url = "/apidoc"
      config.api_base_url = "/api"
      config.validate = false
-     config.markup = Apipie::Markup::Markdown.new
+     config.markup = MoonRaker::Markup::Markdown.new
      config.reload_controllers = Rails.env.development?
      config.api_controllers_matcher = File.join(Rails.root, "app", "controllers", "**","*.rb")
      config.api_routes = Rails.application.routes
@@ -649,7 +649,7 @@ Example:
    end
 
 checksum_path
-  Used in ChecksumInHeaders middleware (see `JSON checksums`_ for more info). It contains path prefix(es) where the header with checksum is added. If set to nil, checksum is added in headers in every response. e.g. ``%w[/api /apipie]``
+  Used in ChecksumInHeaders middleware (see `JSON checksums`_ for more info). It contains path prefix(es) where the header with checksum is added. If set to nil, checksum is added in headers in every response. e.g. ``%w[/api /moon_raker]``
 
 update_checksum
   If set to true, the checksum is recalculated with every documentation_reload call
@@ -658,25 +658,25 @@ update_checksum
 Rails Routes Integration
 ========================
 
-Apipie is able to load the information about the paths based on the
+MoonRaker is able to load the information about the paths based on the
 routes defined in the Rails application, by using the `api!` keyword
 in the DSL.
 
 It should be usable out of box, however, one might want
 to do some customization (such as omitting some implicit parameters in
 the path etc.). For this kind of customizations one can create a new
-formatter and pass as the ``Apipie.configuration.routes_formatter``
+formatter and pass as the ``MoonRaker.configuration.routes_formatter``
 option, like this:
 
 .. code:: ruby
 
-   class MyFormatter < Apipie::RoutesFormatter
+   class MyFormatter < MoonRaker::RoutesFormatter
      def format_path(route)
        super.gsub(/\(.*?\)/, '').gsub('//','') # hide all implicit parameters
      end
    end
 
-   Apipie.configure do |config|
+   MoonRaker.configure do |config|
     ...
     config.routes_formatter = MyFormatter.new
     ...
@@ -729,14 +729,14 @@ in the configuration file.
 Parameter validation normally happens after before_filters, just before
 your controller method is invoked. If you prefer to control when parameter
 validation occurs, set the configuration parameter ``validate`` to ``:explicitly``.
-You must then call the ``apipie_validations`` method yourself, e.g.:
+You must then call the ``moon_raker_validations`` method yourself, e.g.:
 
 .. code:: ruby
 
-   before_filter: :apipie_validations
+   before_filter: :moon_raker_validations
 
 This is useful if you have before_filters which use parameter values: just add them
-after the ``apipie_validations`` before_filter.
+after the ``moon_raker_validations`` before_filter.
 
 TypeValidator
 -------------
@@ -876,13 +876,13 @@ Adding custom validator
 -----------------------
 
 Only basic validators are included but it is really easy to add your own.
-Create a new initializer with a subclass of Apipie::Validator::BaseValidator.
+Create a new initializer with a subclass of MoonRaker::Validator::BaseValidator.
 Two methods are required to implement this - instance method
 :code:`validate(value)` and class method
 :code:`build(param_description, argument, options, block)`.
 
 When searching for the validator +build+ method, every subclass of
-Apipie::Validator::BaseValidator is called. The first one that returns the
+MoonRaker::Validator::BaseValidator is called. The first one that returns the
 constructed validator object is used.
 
 Example: Adding IntegerValidator
@@ -893,11 +893,11 @@ We want to check if the parameter value is an integer like this:
 
    param :id, Integer, :desc => "Company ID"
 
-So we create apipie_validators.rb initializer with this content:
+So we create moon_raker_validators.rb initializer with this content:
 
 .. code:: ruby
 
-   class IntegerValidator < Apipie::Validator::BaseValidator
+   class IntegerValidator < MoonRaker::Validator::BaseValidator
 
      def initialize(param_description, argument)
        super(param_description)
@@ -923,7 +923,7 @@ So we create apipie_validators.rb initializer with this content:
 Parameters of the build method:
 
 param_description
-  Instance of Apipie::ParamDescription contains all
+  Instance of MoonRaker::ParamDescription contains all
   given information about the validated parameter.
 
 argument
@@ -966,16 +966,16 @@ children will know about that). Routes can be flagged as deprecated,
 and an annotation will be added to them when viewing in the API
 documentation.
 
-From the Apipie API perspective, the resources belong to the version.
-With versioning, there are paths like this provided by apipie:
+From the MoonRaker API perspective, the resources belong to the version.
+With versioning, there are paths like this provided by moon_raker:
 
 .. code::
 
-   /apipie/1/users/index
-   /apipie/2/users/index
+   /moon_raker/1/users/index
+   /moon_raker/2/users/index
 
 When not specifying the version explicitly in the path (or in DSL),
-default version (`Apipie.configuration.default_version`) is used
+default version (`MoonRaker.configuration.default_version`) is used
 instead ("1.0" by default). Therefore, an application that doesn't
 need versioning should work as before.
 
@@ -999,10 +999,10 @@ The default markup language is `RDoc
 the config file (``config.markup=``) to one of these:
 
 Markdown
-  Use Apipie::Markup::Markdown.new. You need Maruku gem.
+  Use MoonRaker::Markup::Markdown.new. You need Maruku gem.
 
 Textile
-  Use Apipie::Markup::Textile.new. You need RedCloth gem.
+  Use MoonRaker::Markup::Textile.new. You need RedCloth gem.
 
 Or provide you own object with a ``to_html(text)`` method.
 For inspiration, this is how Textile markup usage is implemented:
@@ -1022,12 +1022,12 @@ For inspiration, this is how Textile markup usage is implemented:
 Localization
 ============
 
-Apipie has support for localized API documentation in both formats (JSON and HTML).
-Apipie uses the library I18n for localization of itself.
+MoonRaker has support for localized API documentation in both formats (JSON and HTML).
+MoonRaker uses the library I18n for localization of itself.
 Check ``config/locales`` directory for available translations.
 
 A major part of strings in the documentation comes from the API.
-As preferences regarding localization libraries differ amongst project, Apipie needs to know how to set the locale for your project,
+As preferences regarding localization libraries differ amongst project, MoonRaker needs to know how to set the locale for your project,
 and how to translate a string using the library your project uses. That can be done using lambdas in configuration.
 
 Sample configuration when your project uses FastGettext
@@ -1035,7 +1035,7 @@ Sample configuration when your project uses FastGettext
 
 .. code:: ruby
 
-   Apipie.configure do |config|
+   MoonRaker.configure do |config|
     ...
     config.languages = ['en', 'cs']
     config.default_locale = 'en'
@@ -1062,7 +1062,7 @@ When your project use I18n, localization related configuration could appear as f
 
 .. code:: ruby
 
-   Apipie.configure do |config|
+   MoonRaker.configure do |config|
     ...
     config.languages = ['en', 'cs']
     config.default_locale = 'en'
@@ -1096,9 +1096,9 @@ The dynamic documentation follows the same schema. The ``http://localhost:3000/a
 Modifying Views
 ================
 
-To modify the views of your documentation, run ``rails g apipie:views``.
-This will copy the Apipie views to ``app/views/apipie/apipies`` and
-``app/views/layouts/apipie``.
+To modify the views of your documentation, run ``rails g moon_raker:views``.
+This will copy the MoonRaker views to ``app/views/moon_raker/moon_rakers`` and
+``app/views/layouts/moon_raker``.
 
 
 ==============
@@ -1106,64 +1106,64 @@ This will copy the Apipie views to ``app/views/apipie/apipies`` and
 ==============
 
 To generate a static version of documentation (perhaps to put it on
-your project site or something), run the ``rake apipie:static`` task. It will
+your project site or something), run the ``rake moon_raker:static`` task. It will
 create a set of HTML files (multi-pages, single-page, plain) in your doc
-directory. If you prefer a JSON version run ``rake apipie:static_json``.
+directory. If you prefer a JSON version run ``rake moon_raker:static_json``.
 By default the documentation for the default API version is
-used. You can specify the version with ``rake apipie:static[2.0]``
+used. You can specify the version with ``rake moon_raker:static[2.0]``
 
 When you want to avoid any unnecessary computation in production mode,
-you can generate a cache with ``rake apipie:cache`` and configure the
+you can generate a cache with ``rake moon_raker:cache`` and configure the
 app to use it in production with ``config.use_cache = Rails.env.production?``
 
-Default cache dir is ``File.join(Rails.root, "public", "apipie-cache")``,
+Default cache dir is ``File.join(Rails.root, "public", "moon_raker-cache")``,
 you can change it to where you want, example: ``config.cache_dir = File.join(Rails.root, "doc", "apidoc")``.
 
 If, for some complex cases, you need to generate/re-generate just part of the cache
-use ``rake apipie:cache cache_part=index`` resp. ``rake apipie:cache cache_part=resources``
-To generate it for different locations for further processing use ``rake apipie:cache OUT=/tmp/apipie_cache``.
+use ``rake moon_raker:cache cache_part=index`` resp. ``rake moon_raker:cache cache_part=resources``
+To generate it for different locations for further processing use ``rake moon_raker:cache OUT=/tmp/moon_raker_cache``.
 
 ===================
  JSON checksums
 ===================
 
 If the API client needs to be sure that the JSON didn't changed, add
-the ``ApipieChecksumInHeaders`` middleware in your rails app.
+the ``MoonRakerChecksumInHeaders`` middleware in your rails app.
 It can add a checksum of the entire JSON document in the response headers.
 
 .. code::
 
-  "Apipie-Checksum"=>"fb81460e7f4e78d059f826624bdf9504"
+  "MoonRaker-Checksum"=>"fb81460e7f4e78d059f826624bdf9504"
 
-`Apipie bindings <https://github.com/Apipie/apipie-bindings>`_ uses this feature to refresh its JSON cache.
+`MoonRaker bindings <https://github.com/MoonRaker/moon_raker-bindings>`_ uses this feature to refresh its JSON cache.
 
 To set it up add the following to your ``application.rb``
 
 .. code::
 
-   require 'apipie/middleware/checksum_in_headers'
+   require 'moon_raker/middleware/checksum_in_headers'
    # Add JSON checksum in headers for smarter caching
-   config.middleware.use "Apipie::Middleware::ChecksumInHeaders"
+   config.middleware.use "MoonRaker::Middleware::ChecksumInHeaders"
 
-And in your apipie initializer allow checksum calculation
+And in your moon_raker initializer allow checksum calculation
 
 .. code::
 
-   Apipie.configuration.update_checksum = true
+   MoonRaker.configuration.update_checksum = true
 
 
 By default the header is added to responses for ``config.doc_base_url`` and ``/api``.
 It can be changed in configuration (see `Configuration Reference`_ for details).
 
 The checksum calculation is lazy, and done with the first request. If you run with ``use_cache = true``,
-do not forget to run the rake task ``apipie:cache``.
+do not forget to run the rake task ``moon_raker:cache``.
 
 
 ===================
  Tests Integration
 ===================
 
-Apipie integrates with automated testing in two ways. *Documentation
+MoonRaker integrates with automated testing in two ways. *Documentation
 bootstrapping* and *examples recording*.
 
 Documentation Bootstrapping
@@ -1172,10 +1172,10 @@ Documentation Bootstrapping
 Let's say you have an application without REST API documentation.
 However you have a set of tests that are run against this API. A lot
 of information is already included in these tests, it just needs to be
-extracted somehow. Luckily, Apipie provides such a feature.
+extracted somehow. Luckily, MoonRaker provides such a feature.
 
 When running the tests, set the ``APIPIE_RECORD=params`` environment
-variable or call ``Apipie.record('params')`` from specs starter. You can either use it with functional tests:
+variable or call ``MoonRaker.record('params')`` from specs starter. You can either use it with functional tests:
 
 .. code::
 
@@ -1197,14 +1197,14 @@ Examples Recording
 
 You can also use the tests to generate up-to-date examples for your
 code. Similar to the bootstrapping process, you can use it with functional
-tests or a running server, setting ``APIPIE_RECORD=examples`` or calling ``Apipie.record('examples')`` in your specs starter.
+tests or a running server, setting ``APIPIE_RECORD=examples`` or calling ``MoonRaker.record('examples')`` in your specs starter.
 
 .. code::
 
    APIPIE_RECORD=examples rake test:functionals
    APIPIE_RECORD=examples rails server
 
-The data is written into ``doc/apipie_examples.yml``. By default,
+The data is written into ``doc/moon_raker_examples.yml``. By default,
 only the first example is shown for each action. You can customize
 this by setting the ``show_in_doc`` attribute at each example.
 
@@ -1276,7 +1276,7 @@ Make sure to enable ``config.render_views`` in your ``config/rails_helper.rb`` o
 ====================
 
 In earlier versions (<= 0.0.13), there was a simple client generator
-as a part of Apipie gem. As more features and users came to Apipie,
+as a part of MoonRaker gem. As more features and users came to MoonRaker,
 there was a greater need for changes on a per project basis. It's
 hard (or even impossible) to provide a generic solution for the client
 code. We also don't want to tell you what's the right way to do it
@@ -1286,11 +1286,11 @@ Therefore you can't generate client code directly by a rake task in
 further versions.
 
 There is, however, an even better and more flexible way to reuse your API
-documentation for this purpose: using the API the Apipie
+documentation for this purpose: using the API the MoonRaker
 provides in the generator code. Check out our sister project
-`apipie-bindings <https://github.com/Apipie/apipie-bindings>`_, as they
+`moon_raker-bindings <https://github.com/MoonRaker/moon_raker-bindings>`_, as they
 use exactly this approach. You also don't need to run the service,
-provided it uses Apipie as a backend.
+provided it uses MoonRaker as a backend.
 
 And if you write one on your own, don't hesitate to share it with us!
 
@@ -1300,7 +1300,7 @@ And if you write one on your own, don't hesitate to share it with us!
 ====================
 
 You can setup `Disqus <http://www.disqus.com>`_ discussion within
-your documentation. Just set the credentials in the Apipie
+your documentation. Just set the credentials in the MoonRaker
 configuration:
 
 .. code:: ruby
@@ -1311,11 +1311,11 @@ configuration:
  External References
 =====================
 
-* `Getting started tutorial <https://github.com/iNecas/apipie-demo>`_ -
+* `Getting started tutorial <https://github.com/iNecas/moon_raker-demo>`_ -
   including examples of using the tests integration and versioning.
 
 * `Real-world application usage <https://github.com/Katello/katello>`_
 
 * `Read-world application usage with versioning <https://github.com/theforeman/foreman>`_
 
-* `Using Apipie API to generate bindings <https://github.com/Apipie/apipie-bindings>`_
+* `Using MoonRaker API to generate bindings <https://github.com/MoonRaker/moon_raker-bindings>`_

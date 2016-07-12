@@ -6,8 +6,8 @@ describe 'rake tasks' do
   let(:doc_path)  { "user_specified_doc_path" }
 
   before do
-    Apipie.configuration.doc_path = doc_path
-    allow(Apipie).to receive(:reload_documentation)
+    MoonRaker.configuration.doc_path = doc_path
+    allow(MoonRaker).to receive(:reload_documentation)
     subject.invoke(*task_args)
   end
 
@@ -25,9 +25,9 @@ describe 'rake tasks' do
       Dir["#{doc_output}*"].each { |static_file| FileUtils.rm_rf(static_file) }
     end
 
-    describe 'apipie:static' do
-      it "generates static files for the default version of apipie docs" do
-        expect(apidoc_html).to match(/Test app #{Apipie.configuration.default_version}/)
+    describe 'moon_raker:static' do
+      it "generates static files for the default version of moon_raker docs" do
+        expect(apidoc_html).to match(/Test app #{MoonRaker.configuration.default_version}/)
       end
 
       it "includes the stylesheets" do
@@ -36,8 +36,8 @@ describe 'rake tasks' do
       end
     end
 
-    describe 'apipie:static[2.0]' do
-      it "generates static files for the default version of apipie docs" do
+    describe 'moon_raker:static[2.0]' do
+      it "generates static files for the default version of moon_raker docs" do
         expect(apidoc_html).to match(/Test app 2.0/)
       end
 
@@ -48,9 +48,9 @@ describe 'rake tasks' do
     end
   end
 
-  describe 'apipie:cache' do
+  describe 'moon_raker:cache' do
     let(:cache_output) do
-      File.join(::Rails.root, 'public', 'apipie-cache')
+      File.join(::Rails.root, 'public', 'moon_raker-cache')
     end
 
     let(:apidoc_html) do

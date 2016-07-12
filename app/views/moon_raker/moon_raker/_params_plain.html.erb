@@ -1,0 +1,20 @@
+<ul>
+  <% params.each do |param| %>
+    <% if !param[:show] %>
+      <%= render(:partial => "params_plain", :locals => {:params => param[:params]}) unless param[:params].blank? %>
+      <% next %>
+    <% end %>
+    <li>
+      <strong><%= param[:name] %> </strong>:
+      <small>
+        <%= param[:required] ? t('moon_raker.required') : t('moon_raker.optional') %>
+        <%= param[:allow_nil] ? ', '+t('moon_raker.nil_allowed') : '' %>
+        <% if param[:validator] %>
+          [ <%= MoonRaker.markup_to_html(param[:validator]).html_safe %> ]
+        <% end %>
+      </small>
+      <%= param[:description].html_safe %>
+    </li>
+    <%= render(:partial => "params_plain", :locals => {:params => param[:params]}) unless param[:params].blank? %>
+  <% end %>
+</ul>

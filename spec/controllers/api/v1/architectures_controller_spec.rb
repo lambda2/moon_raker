@@ -2,17 +2,17 @@ require 'spec_helper'
 
 describe Api::V1::ArchitecturesController do
   describe "resource description" do
-    subject { Apipie.get_resource_description(Api::V1::ArchitecturesController, "1.0") }
+    subject { MoonRaker.get_resource_description(Api::V1::ArchitecturesController, "1.0") }
 
     it "should be version 1.0" do
       expect(subject._version).to eq('1.0')
 
-      expect(Apipie.resource_descriptions['1.0'].size).to eq(2)
-      expect(Apipie.resource_descriptions['1.0'].keys).to include('architectures', 'base')
+      expect(MoonRaker.resource_descriptions['1.0'].size).to eq(2)
+      expect(MoonRaker.resource_descriptions['1.0'].keys).to include('architectures', 'base')
     end
 
     context "there is another version" do
-      let(:v2) { archv2 = Apipie.get_resource_description(Api::V2::ArchitecturesController, "2.0") }
+      let(:v2) { archv2 = MoonRaker.get_resource_description(Api::V2::ArchitecturesController, "2.0") }
 
       it "should have unique doc url" do
         expect(subject.doc_url).not_to eq(v2.doc_url)

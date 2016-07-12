@@ -1,0 +1,26 @@
+<% unless headers.blank? %>
+  <%= heading(t('moon_raker.headers'), h_level) %>
+  <table class='table'>
+    <thead>
+      <tr>
+        <th><%= t('moon_raker.header_name') %></th>
+        <th><%= t('moon_raker.description') %></th>
+      </tr>
+    </thead>
+    <tbody>
+      <% headers.each do |header| %>
+        <tr>
+          <td>
+            <strong><%= header[:name] %> </strong><br>
+            <small>
+              <%= header[:options][:required] ? t('moon_raker.required') : t('moon_raker.optional') %>
+            </small>
+          </td>
+          <td>
+            <%= header[:description].html_safe %>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+<% end %>
