@@ -5,11 +5,11 @@ require 'moon_raker/version'
 Gem::Specification.new do |s|
   s.name        = 'moon_raker'
   s.version     = MoonRaker::VERSION
-  s.authors     = ["Pavel Pokorny","Ivan Necas"]
-  s.email       = ["pajkycz@gmail.com", "inecas@redhat.com"]
+  s.authors     = ["Pavel Pokorny","Ivan Necas", "André Aubin"]
+  s.email       = ["pajkycz@gmail.com", "inecas@redhat.com", "andre.aubin@lambdaweb.fr"]
   s.homepage    = "http://github.com/lambda2/moon_raker"
-  s.summary     = %q{Rails REST API documentation tool}
-  s.description = %q{Rails REST API documentation tool}
+  s.summary     = %q{Rails REST API documentation tool, from Apipie-rails}
+  s.description = %q{Rails REST API documentation tool, from Apipie-rails}
 
 
   s.files         = `git ls-files`.split("\n")
