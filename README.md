@@ -1,4 +1,4 @@
  API Documentation Tool
 ========================
 
-cf.[MoonRaker readme](https://github.com/MoonRaker/moon_raker-rails)
+A fork of [Apipie-rails](https://github.com/Apipie/apipie-rails), for the uses of 42.
