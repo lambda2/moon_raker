@@ -9,9 +9,9 @@ module MoonRaker
 
     around_filter :set_script_name
     # before_filter :authenticate
-    
+
     # skip_authentication
-    
+
 
     def authenticate
       if MoonRaker.configuration.authenticate
@@ -42,7 +42,11 @@ module MoonRaker
         }
       })
 
-      render "moon_raker/static/#{@section}", layout: "moon_raker/guides"
+      begin
+        render "moon_raker/static/#{@section}", layout: "moon_raker/guides"
+      rescue ActionView::MissingTemplate
+        render 'moon_raker_404', :status => 404
+      end
     end
 
     def index
@@ -108,7 +112,7 @@ module MoonRaker
           path << "/" << params[:version] if params[:version].present?
           path << "/" << params[:resource] if params[:resource].present?
           path << "/" << params[:method] if params[:method].present?
-          
+
           author = {
             "@type": "Person",
             first_name: 'André',
