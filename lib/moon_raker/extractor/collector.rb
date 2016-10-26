@@ -34,6 +34,7 @@ module MoonRaker
 
       def add_to_records(record)
         key = "#{MoonRaker.get_resource_name(record[:controller])}##{record[:action]}"
+        # p "Adding record..#{key} -> #{record}"
         @records[key] << record
       end
 

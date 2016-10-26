@@ -1,4 +1,6 @@
 # -*- coding: utf-8 -*-
+
+
 module MoonRaker
   module Validator
     # to create new validator, inherit from MoonRaker::Validator::Base

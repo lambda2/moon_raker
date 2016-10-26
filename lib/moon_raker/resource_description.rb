@@ -15,6 +15,7 @@ module MoonRaker
                 :_headers
 
     def initialize(controller, resource_name, dsl_data = nil, version = nil)
+      # p "New resource with name #{resource_name} for controller #{controller}"
       @_methods = ActiveSupport::OrderedHash.new
       @_params_args = []
       @_errors_args = []

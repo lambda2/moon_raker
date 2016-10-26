@@ -231,7 +231,7 @@ header.main-page-header .logo small {
 .documentation .breadcrumb {
   background: transparent;
   background-image: none;
-  
+
 }
 
 h3 i.material-icons {
@@ -251,7 +251,7 @@ h3 i.material-icons {
   border-top: none;
 }
 #method-params table td:first-child {
-  
+
   display: -ms-flexbox;
   display: -webkit-flex;
   display: flex;
@@ -406,7 +406,7 @@ code[class*="language-"],
 pre[class*="language-"] {
   color: #f8f8f2;
   overflow-x: scroll;
-} 
+}
 
 
 /* =========== resource containers ============= */

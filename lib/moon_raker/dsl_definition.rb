@@ -438,6 +438,7 @@ module MoonRaker
       # the concern was included into a controller
       def included(controller)
         super
+        @controller = controller
         _moon_raker_concern_data.each do |method_name, _moon_raker_dsl_data|
           # remove method description if exists and create new one
           description = MoonRaker.define_method_description(controller, method_name, _moon_raker_dsl_data)
@@ -451,6 +452,10 @@ module MoonRaker
 
       def moon_raker_concern?
         true
+      end
+
+      def controller
+        @controller
       end
 
       # create method api and redefine newly added method
