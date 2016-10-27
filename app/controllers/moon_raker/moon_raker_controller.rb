@@ -1,6 +1,6 @@
 module MoonRaker
   class MoonRakerController < ActionController::Base
-    # caches_page :index
+    caches_page :index, gzip: true if MoonRaker.configuration.static_caching
 
     include ActionView::Context
     include MoonRakerHelper

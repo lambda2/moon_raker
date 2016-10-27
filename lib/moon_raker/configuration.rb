@@ -7,7 +7,7 @@ module MoonRaker
       :default_version, :debug, :version_in_url, :namespaced_resources,
       :validate, :validate_value, :validate_presence, :validate_key, :authenticate, :doc_path,
       :show_all_examples, :process_params, :update_checksum, :checksum_path,
-      :link_extension, :record, :languages, :translate, :locale, :default_locale,
+      :link_extension, :record, :languages, :static_caching, :translate, :locale, :default_locale,
       :persist_show_in_doc, :authorize
 
     alias_method :validate?, :validate
@@ -149,6 +149,7 @@ module MoonRaker
       @validate_value = true
       @validate_presence = true
       @validate_key = false
+      @static_caching = false
       @required_by_default = false
       @api_base_url = HashWithIndifferentAccess.new
       @doc_base_url = '/moon_raker'
