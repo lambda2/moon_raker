@@ -119,7 +119,12 @@ module MoonRaker
 
     def merge_with(other_param_desc)
       if validator && other_param_desc.validator
-        validator.merge_with(other_param_desc.validator)
+        begin
+          validator.merge_with(other_param_desc.validator)
+        rescue Exception => e
+          puts "Unable to merge #{e}"
+          self.validator ||= other_param_desc.validator
+        end
       else
         self.validator ||= other_param_desc.validator
       end
@@ -142,6 +147,7 @@ module MoonRaker
     def self.unify(params)
       ordering = params.map(&:name)
       params.group_by(&:name).map do |_name, param_descs|
+        p "[#{_name}] Reduced params: #{param_descs.reduce(&:merge_with)}"
         param_descs.reduce(&:merge_with)
       end.sort_by { |param| ordering.index(param.name) }
     end

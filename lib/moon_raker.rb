@@ -16,7 +16,3 @@ require 'moon_raker/validator'
 require 'moon_raker/railtie'
 require 'moon_raker/extractor'
 require 'moon_raker/version'
-
-if Rails.version.start_with?('3.0')
-  warn 'Warning: moon_raker-rails is not going to support Rails 3.0 anymore in future versions'
-end
